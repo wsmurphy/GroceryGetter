@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cYS-Q0-dF5">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Grocery Getter-->
+        <scene sceneID="sf9-vR-yMb">
+            <objects>
+                <tableViewController id="lhY-xC-lxO" customClass="HomeTableViewController" customModule="GroceryGetter" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="0PE-YN-CtK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="BNb-SR-fio">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="nQv-5o-bg3">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nQv-5o-bg3" id="qca-eo-9nR">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2H-R2-syf">
+                                                    <rect key="frame" x="18" y="11" width="55" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIK-em-is8">
+                                                    <rect key="frame" x="511" y="7" width="73" height="30"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                                    <state key="normal" title="Add Menu">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="w2H-R2-syf" firstAttribute="leading" secondItem="qca-eo-9nR" secondAttribute="leadingMargin" constant="10" id="Ik1-RD-69P"/>
+                                                <constraint firstAttribute="centerY" secondItem="w2H-R2-syf" secondAttribute="centerY" constant="0.25" id="M0r-V2-edf"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="HIK-em-is8" secondAttribute="trailing" constant="8" id="pZr-gM-XgE"/>
+                                                <constraint firstItem="w2H-R2-syf" firstAttribute="leading" secondItem="qca-eo-9nR" secondAttribute="leadingMargin" constant="10" id="tby-BF-sIT"/>
+                                                <constraint firstAttribute="centerY" secondItem="w2H-R2-syf" secondAttribute="centerY" id="xNW-M1-Cwy"/>
+                                                <constraint firstAttribute="centerY" secondItem="HIK-em-is8" secondAttribute="centerY" constant="-0.25" id="xyp-eY-RD8"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="M0r-V2-edf"/>
+                                                    <exclude reference="tby-BF-sIT"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="M0r-V2-edf"/>
+                                                    <include reference="tby-BF-sIT"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="menuNameLabel" destination="w2H-R2-syf" id="sYO-vQ-tzE"/>
+                                            <segue destination="2YQ-bm-R8d" kind="show" id="sex-fF-ydp"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" id="ila-na-wMJ" customClass="MenuTableViewCell" customModule="GroceryGetter" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ila-na-wMJ" id="MdF-VX-vEl">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jv-0k-ayb">
+                                                    <rect key="frame" x="18" y="12" width="94" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Num of Meals" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtH-hh-6aq">
+                                                    <rect key="frame" x="477" y="12" width="107" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="254" y="11" width="133" height="21"/>
+                                                    </variation>
+                                                    <variation key="widthClass=regular" fixedFrame="YES">
+                                                        <rect key="frame" x="648" y="11" width="133" height="21"/>
+                                                    </variation>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="KtH-hh-6aq" secondAttribute="trailing" constant="5" id="4uR-6Y-L9y"/>
+                                                <constraint firstAttribute="centerY" secondItem="KtH-hh-6aq" secondAttribute="centerY" constant="0.25" id="Dq6-4X-cQ4"/>
+                                                <constraint firstAttribute="centerY" secondItem="6jv-0k-ayb" secondAttribute="centerY" constant="0.25" id="Eh3-5q-tO4"/>
+                                                <constraint firstAttribute="centerY" secondItem="KtH-hh-6aq" secondAttribute="centerY" constant="0.25" id="NNn-kD-3aH"/>
+                                                <constraint firstAttribute="centerY" secondItem="6jv-0k-ayb" secondAttribute="centerY" constant="0.25" id="V5s-Q0-kKy"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="KtH-hh-6aq" secondAttribute="trailing" constant="8" id="fT2-4G-gfI"/>
+                                                <constraint firstItem="6jv-0k-ayb" firstAttribute="leading" secondItem="MdF-VX-vEl" secondAttribute="leadingMargin" constant="10" id="fu1-VB-jfI"/>
+                                                <constraint firstItem="6jv-0k-ayb" firstAttribute="leading" secondItem="MdF-VX-vEl" secondAttribute="leadingMargin" constant="10" id="iYn-Pp-g3B"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Eh3-5q-tO4"/>
+                                                    <exclude reference="fu1-VB-jfI"/>
+                                                    <exclude reference="4uR-6Y-L9y"/>
+                                                    <exclude reference="NNn-kD-3aH"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="Eh3-5q-tO4"/>
+                                                    <include reference="fu1-VB-jfI"/>
+                                                    <include reference="4uR-6Y-L9y"/>
+                                                    <include reference="NNn-kD-3aH"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="menuNameLabel" destination="6jv-0k-ayb" id="dSM-SZ-Iim"/>
+                                            <outlet property="numOfMealsLabel" destination="KtH-hh-6aq" id="EqR-Sg-ba9"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" id="HLe-fR-03O" customClass="MenuTableViewCell" customModule="GroceryGetter" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HLe-fR-03O" id="LBE-sf-zZe">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPL-hO-s9h">
+                                                    <rect key="frame" x="18" y="12" width="94" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Num of Meals" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3b-vr-hgc">
+                                                    <rect key="frame" x="477" y="12" width="107" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="254" y="11" width="133" height="21"/>
+                                                    </variation>
+                                                    <variation key="widthClass=regular" fixedFrame="YES">
+                                                        <rect key="frame" x="648" y="11" width="133" height="21"/>
+                                                    </variation>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="cPL-hO-s9h" secondAttribute="centerY" constant="0.25" id="2aF-v0-mZ3"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="c3b-vr-hgc" secondAttribute="trailing" constant="5" id="8Xf-yh-3fo"/>
+                                                <constraint firstItem="cPL-hO-s9h" firstAttribute="leading" secondItem="LBE-sf-zZe" secondAttribute="leadingMargin" constant="10" id="AXq-a3-IYW"/>
+                                                <constraint firstAttribute="centerY" secondItem="cPL-hO-s9h" secondAttribute="centerY" constant="0.25" id="Pps-aa-1j7"/>
+                                                <constraint firstAttribute="centerY" secondItem="c3b-vr-hgc" secondAttribute="centerY" constant="0.25" id="TEp-hp-haJ"/>
+                                                <constraint firstAttribute="centerY" secondItem="c3b-vr-hgc" secondAttribute="centerY" constant="0.25" id="tfQ-3o-0ZM"/>
+                                                <constraint firstItem="cPL-hO-s9h" firstAttribute="leading" secondItem="LBE-sf-zZe" secondAttribute="leadingMargin" constant="10" id="vlz-Ws-uaJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="c3b-vr-hgc" secondAttribute="trailing" constant="8" id="xsn-5T-f22"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Pps-aa-1j7"/>
+                                                    <exclude reference="AXq-a3-IYW"/>
+                                                    <exclude reference="8Xf-yh-3fo"/>
+                                                    <exclude reference="tfQ-3o-0ZM"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="Pps-aa-1j7"/>
+                                                    <include reference="AXq-a3-IYW"/>
+                                                    <include reference="8Xf-yh-3fo"/>
+                                                    <include reference="tfQ-3o-0ZM"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="menuNameLabel" destination="cPL-hO-s9h" id="y5a-c6-Zan"/>
+                                            <outlet property="numOfMealsLabel" destination="c3b-vr-hgc" id="IFo-Yg-dyB"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="uG7-OS-Yee">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="H6Y-85-YO4" customClass="MealTableViewCell" customModule="GroceryGetter" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H6Y-85-YO4" id="tf2-xU-wyY">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meals" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJF-5B-bLT">
+                                                    <rect key="frame" x="18" y="11" width="49" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWv-in-rgw">
+                                                    <rect key="frame" x="516" y="5" width="68" height="30"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                                    <state key="normal" title="Add Meal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="hWv-in-rgw" secondAttribute="centerY" constant="2" id="0nM-6u-aAk"/>
+                                                <constraint firstAttribute="centerY" secondItem="sJF-5B-bLT" secondAttribute="centerY" constant="0.25" id="90P-KO-WxM"/>
+                                                <constraint firstItem="sJF-5B-bLT" firstAttribute="leading" secondItem="tf2-xU-wyY" secondAttribute="leadingMargin" constant="10" id="Pgj-Ar-8x7"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hWv-in-rgw" secondAttribute="trailing" constant="8" id="S0p-h4-7Ft"/>
+                                                <constraint firstItem="sJF-5B-bLT" firstAttribute="leading" secondItem="tf2-xU-wyY" secondAttribute="leadingMargin" constant="10" id="bmw-Js-k2b"/>
+                                                <constraint firstAttribute="centerY" secondItem="sJF-5B-bLT" secondAttribute="centerY" constant="0.25" id="eI1-6S-pOz"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="bmw-Js-k2b"/>
+                                                    <exclude reference="eI1-6S-pOz"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="bmw-Js-k2b"/>
+                                                    <include reference="eI1-6S-pOz"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="mealNameLabel" destination="sJF-5B-bLT" id="H6b-0x-BvQ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MealCell" id="9qY-mZ-afe" customClass="MealTableViewCell" customModule="GroceryGetter" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9qY-mZ-afe" id="XsR-dp-nVx">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meal Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7f-DT-dDl">
+                                                    <rect key="frame" x="18" y="12" width="88" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Num of Items" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7n-MP-JyJ">
+                                                    <rect key="frame" x="481" y="12" width="104" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="254" y="11" width="133" height="21"/>
+                                                    </variation>
+                                                    <variation key="widthClass=regular" fixedFrame="YES">
+                                                        <rect key="frame" x="643" y="11" width="133" height="21"/>
+                                                    </variation>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="u7f-DT-dDl" firstAttribute="leading" secondItem="XsR-dp-nVx" secondAttribute="leadingMargin" constant="10" id="3JB-be-EML"/>
+                                                <constraint firstAttribute="centerY" secondItem="u7f-DT-dDl" secondAttribute="centerY" constant="0.25" id="5wu-pc-Wnl"/>
+                                                <constraint firstAttribute="centerY" secondItem="k7n-MP-JyJ" secondAttribute="centerY" constant="0.25" id="6l8-oL-W5r"/>
+                                                <constraint firstAttribute="centerY" secondItem="u7f-DT-dDl" secondAttribute="centerY" constant="0.25" id="bVs-x8-qBb"/>
+                                                <constraint firstItem="u7f-DT-dDl" firstAttribute="leading" secondItem="XsR-dp-nVx" secondAttribute="leadingMargin" constant="10" id="kK2-0H-WKk"/>
+                                                <constraint firstAttribute="centerY" secondItem="k7n-MP-JyJ" secondAttribute="centerY" constant="0.25" id="myf-Gi-WTJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="k7n-MP-JyJ" secondAttribute="trailing" constant="5" id="nIH-XB-W9s"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="k7n-MP-JyJ" secondAttribute="trailing" constant="8" id="rsA-6F-3HR"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="3JB-be-EML"/>
+                                                    <exclude reference="bVs-x8-qBb"/>
+                                                    <exclude reference="nIH-XB-W9s"/>
+                                                    <exclude reference="myf-Gi-WTJ"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="3JB-be-EML"/>
+                                                    <include reference="bVs-x8-qBb"/>
+                                                    <include reference="nIH-XB-W9s"/>
+                                                    <include reference="myf-Gi-WTJ"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="mealNameLabel" destination="u7f-DT-dDl" id="Gyr-m3-FOP"/>
+                                            <outlet property="numOfItemsLabel" destination="k7n-MP-JyJ" id="ikM-1N-6F0"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MealCell" id="2Sj-u4-duJ" customClass="MealTableViewCell" customModule="GroceryGetter" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Sj-u4-duJ" id="NjP-mj-uzI">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meal Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BpW-w9-Oqi">
+                                                    <rect key="frame" x="18" y="12" width="88" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Num of Items" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFk-jf-s0B">
+                                                    <rect key="frame" x="481" y="12" width="104" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="254" y="11" width="133" height="21"/>
+                                                    </variation>
+                                                    <variation key="widthClass=regular" fixedFrame="YES">
+                                                        <rect key="frame" x="643" y="11" width="133" height="21"/>
+                                                    </variation>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="eFk-jf-s0B" secondAttribute="trailing" constant="5" id="1Va-cA-NGa"/>
+                                                <constraint firstAttribute="centerY" secondItem="BpW-w9-Oqi" secondAttribute="centerY" constant="0.25" id="IdD-nQ-93L"/>
+                                                <constraint firstAttribute="centerY" secondItem="eFk-jf-s0B" secondAttribute="centerY" constant="0.25" id="ZVf-ov-ja4"/>
+                                                <constraint firstAttribute="centerY" secondItem="BpW-w9-Oqi" secondAttribute="centerY" constant="0.25" id="aFE-ad-PmN"/>
+                                                <constraint firstItem="BpW-w9-Oqi" firstAttribute="leading" secondItem="NjP-mj-uzI" secondAttribute="leadingMargin" constant="10" id="jRF-Vx-1bf"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="eFk-jf-s0B" secondAttribute="trailing" constant="8" id="mck-OY-lgt"/>
+                                                <constraint firstItem="BpW-w9-Oqi" firstAttribute="leading" secondItem="NjP-mj-uzI" secondAttribute="leadingMargin" constant="10" id="pBC-x6-gzc"/>
+                                                <constraint firstAttribute="centerY" secondItem="eFk-jf-s0B" secondAttribute="centerY" constant="0.25" id="wSd-Ie-C32"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="jRF-Vx-1bf"/>
+                                                    <exclude reference="aFE-ad-PmN"/>
+                                                    <exclude reference="1Va-cA-NGa"/>
+                                                    <exclude reference="wSd-Ie-C32"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="jRF-Vx-1bf"/>
+                                                    <include reference="aFE-ad-PmN"/>
+                                                    <include reference="1Va-cA-NGa"/>
+                                                    <include reference="wSd-Ie-C32"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="mealNameLabel" destination="BpW-w9-Oqi" id="ypF-dv-7nH"/>
+                                            <outlet property="numOfItemsLabel" destination="eFk-jf-s0B" id="dCU-HK-TRJ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="lhY-xC-lxO" id="2Kq-m8-Zeg"/>
+                            <outlet property="delegate" destination="lhY-xC-lxO" id="usL-Vt-okX"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Grocery Getter" id="ID1-Ut-wuw"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6wW-Ba-t6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="310" y="284"/>
+        </scene>
+        <!--Meals-->
+        <scene sceneID="VRG-0w-sL1">
+            <objects>
+                <tableViewController id="NFP-Vy-xab" customClass="MealTableViewController" customModule="GroceryGetter" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="n5G-4S-fF1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hxV-qR-A6L">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hxV-qR-A6L" id="vAU-OR-8lI">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="NFP-Vy-xab" id="wwx-70-rID"/>
+                            <outlet property="delegate" destination="NFP-Vy-xab" id="t87-XL-JYS"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Meals" id="Yem-af-8aS"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mtt-65-3fy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1054" y="-90"/>
+        </scene>
+        <!--Menus-->
+        <scene sceneID="9Hz-Pm-DiM">
+            <objects>
+                <tableViewController id="2YQ-bm-R8d" customClass="MenuTableViewController" customModule="GroceryGetter" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="rBB-KN-OmM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="y97-9Q-y2K">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y97-9Q-y2K" id="wjQ-GH-SWx">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="2YQ-bm-R8d" id="zbc-nh-fo5"/>
+                            <outlet property="delegate" destination="2YQ-bm-R8d" id="tJW-Qo-uU7"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Menus" id="u2c-fN-uO0"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fmz-nd-mrJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1054" y="636"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mut-wL-dqp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cYS-Q0-dF5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="F01-DB-SFX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lhY-xC-lxO" kind="relationship" relationship="rootViewController" id="czf-Wy-IEw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mBU-Kc-0cv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-502" y="284"/>
+        </scene>
+    </scenes>
+</document>
