@@ -28,9 +28,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIK-em-is8">
-                                                    <rect key="frame" x="511" y="7" width="73" height="30"/>
+                                                    <rect key="frame" x="513" y="7" width="71" height="30"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                                    <state key="normal" title="Add Menu">
+                                                    <state key="normal" title="All Menus">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
@@ -57,8 +57,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="menuNameLabel" destination="w2H-R2-syf" id="sYO-vQ-tzE"/>
-                                            <segue destination="2YQ-bm-R8d" kind="show" id="sex-fF-ydp"/>
+                                            <segue destination="2YQ-bm-R8d" kind="show" identifier="showMenus" id="sex-fF-ydp"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" id="ila-na-wMJ" customClass="MenuTableViewCell" customModule="GroceryGetter" customModuleProvider="target">
@@ -153,16 +152,16 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="Pps-aa-1j7"/>
                                                     <exclude reference="AXq-a3-IYW"/>
+                                                    <exclude reference="Pps-aa-1j7"/>
                                                     <exclude reference="8Xf-yh-3fo"/>
                                                     <exclude reference="tfQ-3o-0ZM"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="constraints">
-                                                    <include reference="Pps-aa-1j7"/>
                                                     <include reference="AXq-a3-IYW"/>
+                                                    <include reference="Pps-aa-1j7"/>
                                                     <include reference="8Xf-yh-3fo"/>
                                                     <include reference="tfQ-3o-0ZM"/>
                                                 </mask>
@@ -177,7 +176,7 @@
                             </tableViewSection>
                             <tableViewSection id="uG7-OS-Yee">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="H6Y-85-YO4" customClass="MealTableViewCell" customModule="GroceryGetter" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="H6Y-85-YO4">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H6Y-85-YO4" id="tf2-xU-wyY">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -189,9 +188,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWv-in-rgw">
-                                                    <rect key="frame" x="516" y="5" width="68" height="30"/>
+                                                    <rect key="frame" x="519" y="5" width="65" height="30"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                                    <state key="normal" title="Add Meal">
+                                                    <state key="normal" title="All Meals">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
@@ -218,7 +217,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="mealNameLabel" destination="sJF-5B-bLT" id="H6b-0x-BvQ"/>
+                                            <segue destination="NFP-Vy-xab" kind="show" identifier="showMeals" id="Y9o-e9-9oH"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MealCell" id="9qY-mZ-afe" customClass="MealTableViewCell" customModule="GroceryGetter" customModuleProvider="target">
@@ -259,16 +258,16 @@
                                                 <mask key="constraints">
                                                     <exclude reference="3JB-be-EML"/>
                                                     <exclude reference="bVs-x8-qBb"/>
-                                                    <exclude reference="nIH-XB-W9s"/>
                                                     <exclude reference="myf-Gi-WTJ"/>
+                                                    <exclude reference="nIH-XB-W9s"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="constraints">
                                                     <include reference="3JB-be-EML"/>
                                                     <include reference="bVs-x8-qBb"/>
-                                                    <include reference="nIH-XB-W9s"/>
                                                     <include reference="myf-Gi-WTJ"/>
+                                                    <include reference="nIH-XB-W9s"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -313,16 +312,16 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="jRF-Vx-1bf"/>
                                                     <exclude reference="aFE-ad-PmN"/>
+                                                    <exclude reference="jRF-Vx-1bf"/>
                                                     <exclude reference="1Va-cA-NGa"/>
                                                     <exclude reference="wSd-Ie-C32"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="constraints">
-                                                    <include reference="jRF-Vx-1bf"/>
                                                     <include reference="aFE-ad-PmN"/>
+                                                    <include reference="jRF-Vx-1bf"/>
                                                     <include reference="1Va-cA-NGa"/>
                                                     <include reference="wSd-Ie-C32"/>
                                                 </mask>
@@ -372,7 +371,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mtt-65-3fy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1054" y="-90"/>
+            <point key="canvasLocation" x="1026" y="586"/>
         </scene>
         <!--Menus-->
         <scene sceneID="9Hz-Pm-DiM">
@@ -399,7 +398,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmz-nd-mrJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1054" y="636"/>
+            <point key="canvasLocation" x="1026" y="-83"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mut-wL-dqp">
