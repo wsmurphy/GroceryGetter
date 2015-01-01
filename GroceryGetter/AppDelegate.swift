@@ -12,10 +12,46 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var mealArray :Array<Meal> = []
+    var menuArray :Array<Menu> = []
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //TODO: Replace with actual data
+        var meal = Meal()
+        meal.mealName = "Meal 1"
+        meal.ingredientArray = ["Item 1", "Item 2"]
+        
+        var meal2 = Meal()
+        meal2.mealName = "Meal 2"
+        meal2.ingredientArray = ["Item 3", "Item 4"]
+        
+        var meal3 = Meal()
+        meal3.mealName = "Meal 3"
+        meal3.ingredientArray = ["Item 3", "Item 4", "Item 4", "Item 4", "Item 4", "Item 4"]
+        
+        var meal4 = Meal()
+        meal4.mealName = "Meal 4"
+        meal4.ingredientArray = ["Item 3", "Item 4", "Item 4", "Item 4"]
+        
+        mealArray.append(meal)
+        mealArray.append(meal2)
+        mealArray.append(meal3)
+        mealArray.append(meal4)
+        
+        var menu = Menu()
+        menu.menuName = "Menu 1"
+        menu.mealArray = [meal, meal2, meal2]
+        
+        var menu1 = Menu()
+        menu1.menuName = "Menu 2"
+        menu1.mealArray = [meal, meal2, meal2]
+        
+        menuArray.append(menu)
+        menuArray.append(menu1)
+        
         return true
     }
 
