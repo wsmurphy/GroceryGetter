@@ -9,6 +9,7 @@
 import UIKit
 
 class HomeTableViewController: UITableViewController {
+    private let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,6 @@ class HomeTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         
         var cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         if(indexPath.section == 0 && indexPath.row > 0) {

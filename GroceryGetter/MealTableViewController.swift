@@ -8,18 +8,21 @@
 
 import UIKit
 
-class MealTableViewController: UITableViewController {
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+class MealTableViewController: UITableViewController, UISplitViewControllerDelegate {
+    private let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    private var collapseSplitView = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        splitViewController?.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
@@ -40,6 +43,10 @@ class MealTableViewController: UITableViewController {
         
         return cell
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        collapseSplitView = false
+    }
 
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -57,6 +64,10 @@ class MealTableViewController: UITableViewController {
         }  
     }
 
+    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController!, ontoPrimaryViewController primaryViewController: UIViewController!) -> Bool {
+        return collapseSplitView
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -11,7 +11,7 @@ import UIKit
 class NewMealTableViewController: UITableViewController, AddIngredientCellDelegate  {
     @IBOutlet weak var mealNameTextField: UITextField!
     var meal : Meal = Meal()
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    private let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
