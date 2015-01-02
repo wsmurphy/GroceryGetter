@@ -32,8 +32,6 @@
 		609E92AB1A523B21007FB9C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		609E92AD1A523B21007FB9C0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		609E92B01A523B21007FB9C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		609E92BB1A523B21007FB9C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		609E92BC1A523B21007FB9C0 /* GroceryGetterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryGetterTests.swift; sourceTree = "<group>"; };
 		609E92C61A523C1A007FB9C0 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		609E92C81A523F73007FB9C0 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		609E92CA1A523F7F007FB9C0 /* MealTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealTableViewCell.swift; sourceTree = "<group>"; };
@@ -53,11 +51,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6068C1A51A573B05002A472E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				60C366231A559A3700FF8A41 /* Meal.swift */,
+				6057EF641A55B08B001B803D /* Menu.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6068C1A61A573B2A002A472E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				609E92C61A523C1A007FB9C0 /* HomeTableViewController.swift */,
+				609E92D01A524AF4007FB9C0 /* MealTableViewController.swift */,
+				609E92D21A524C0B007FB9C0 /* MenuTableViewController.swift */,
+				605ADA691A56FD2600B68587 /* NewMealTableViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		6068C1A71A573B3E002A472E /* Table Cells */ = {
+			isa = PBXGroup;
+			children = (
+				609E92C81A523F73007FB9C0 /* MenuTableViewCell.swift */,
+				609E92CA1A523F7F007FB9C0 /* MealTableViewCell.swift */,
+				605ADA6B1A57193600B68587 /* AddIngredientTableViewCell.swift */,
+			);
+			name = "Table Cells";
+			sourceTree = "<group>";
+		};
 		609E92981A523B21007FB9C0 = {
 			isa = PBXGroup;
 			children = (
 				609E92A31A523B21007FB9C0 /* GroceryGetter */,
-				609E92B91A523B21007FB9C0 /* GroceryGetterTests */,
 				609E92A21A523B21007FB9C0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,20 +100,14 @@
 		609E92A31A523B21007FB9C0 /* GroceryGetter */ = {
 			isa = PBXGroup;
 			children = (
+				6068C1A71A573B3E002A472E /* Table Cells */,
+				6068C1A61A573B2A002A472E /* Controllers */,
+				6068C1A51A573B05002A472E /* Model */,
 				609E92A61A523B21007FB9C0 /* AppDelegate.swift */,
-				609E92C61A523C1A007FB9C0 /* HomeTableViewController.swift */,
-				609E92C81A523F73007FB9C0 /* MenuTableViewCell.swift */,
-				609E92CA1A523F7F007FB9C0 /* MealTableViewCell.swift */,
 				609E92AA1A523B21007FB9C0 /* Main.storyboard */,
 				609E92AD1A523B21007FB9C0 /* Images.xcassets */,
 				609E92AF1A523B21007FB9C0 /* LaunchScreen.xib */,
 				609E92A41A523B21007FB9C0 /* Supporting Files */,
-				609E92D01A524AF4007FB9C0 /* MealTableViewController.swift */,
-				609E92D21A524C0B007FB9C0 /* MenuTableViewController.swift */,
-				60C366231A559A3700FF8A41 /* Meal.swift */,
-				6057EF641A55B08B001B803D /* Menu.swift */,
-				605ADA691A56FD2600B68587 /* NewMealTableViewController.swift */,
-				605ADA6B1A57193600B68587 /* AddIngredientTableViewCell.swift */,
 			);
 			path = GroceryGetter;
 			sourceTree = "<group>";
@@ -95,23 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				609E92A51A523B21007FB9C0 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		609E92B91A523B21007FB9C0 /* GroceryGetterTests */ = {
-			isa = PBXGroup;
-			children = (
-				609E92BC1A523B21007FB9C0 /* GroceryGetterTests.swift */,
-				609E92BA1A523B21007FB9C0 /* Supporting Files */,
-			);
-			path = GroceryGetterTests;
-			sourceTree = "<group>";
-		};
-		609E92BA1A523B21007FB9C0 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				609E92BB1A523B21007FB9C0 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
