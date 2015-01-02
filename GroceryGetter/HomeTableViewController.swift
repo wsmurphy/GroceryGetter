@@ -32,14 +32,22 @@ class HomeTableViewController: UITableViewController {
                 cell.hidden = true
             } else {
                 cell.textLabel?.text = appDelegate.mealArray[indexPath.row - 1].mealName
-                cell.detailTextLabel?.text = "\(appDelegate.mealArray[indexPath.row - 1].numberOfIngredients) items"
+                if(appDelegate.mealArray[indexPath.row - 1].numberOfIngredients == 1) {
+                    cell.detailTextLabel?.text = "\(appDelegate.mealArray[indexPath.row - 1].numberOfIngredients) item"
+                } else {
+                    cell.detailTextLabel?.text = "\(appDelegate.mealArray[indexPath.row - 1].numberOfIngredients) items"
+                }
             }
         } else if (indexPath.section == 1 && indexPath.row > 0) {
             if(indexPath.row > appDelegate.menuArray.count) {
                 cell.hidden = true
             } else {
                 cell.textLabel?.text = appDelegate.menuArray[indexPath.row - 1].menuName
-                cell.detailTextLabel?.text = "\(appDelegate.menuArray[indexPath.row - 1].numberOfMeals) meals"
+                if(appDelegate.menuArray[indexPath.row - 1].numberOfMeals == 1) {
+                    cell.detailTextLabel?.text = "\(appDelegate.menuArray[indexPath.row - 1].numberOfMeals) meal"
+                } else {
+                    cell.detailTextLabel?.text = "\(appDelegate.menuArray[indexPath.row - 1].numberOfMeals) meals"
+                }
             }
         }
         return cell

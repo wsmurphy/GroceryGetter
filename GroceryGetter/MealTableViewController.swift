@@ -32,7 +32,11 @@ class MealTableViewController: UITableViewController {
 
         // Configure the cell...
         cell.textLabel?.text = appDelegate.mealArray[indexPath.row].mealName
-        cell.detailTextLabel?.text = "\(appDelegate.mealArray[indexPath.row].numberOfIngredients) items"
+        if(appDelegate.mealArray[indexPath.row].numberOfIngredients == 1) {
+            cell.detailTextLabel?.text = "\(appDelegate.mealArray[indexPath.row].numberOfIngredients) item"
+        } else {
+            cell.detailTextLabel?.text = "\(appDelegate.mealArray[indexPath.row].numberOfIngredients) items"
+        }
         
         return cell
     }

@@ -39,25 +39,11 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="centerY" secondItem="hWv-in-rgw" secondAttribute="centerY" constant="2" id="0nM-6u-aAk"/>
-                                                <constraint firstAttribute="centerY" secondItem="sJF-5B-bLT" secondAttribute="centerY" constant="0.25" id="90P-KO-WxM"/>
-                                                <constraint firstItem="sJF-5B-bLT" firstAttribute="leading" secondItem="tf2-xU-wyY" secondAttribute="leadingMargin" constant="10" id="Pgj-Ar-8x7"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="hWv-in-rgw" secondAttribute="trailing" constant="8" id="S0p-h4-7Ft"/>
-                                                <constraint firstItem="sJF-5B-bLT" firstAttribute="leading" secondItem="tf2-xU-wyY" secondAttribute="leadingMargin" constant="10" id="bmw-Js-k2b"/>
-                                                <constraint firstAttribute="centerY" secondItem="sJF-5B-bLT" secondAttribute="centerY" constant="0.25" id="eI1-6S-pOz"/>
+                                                <constraint firstAttribute="centerY" secondItem="hWv-in-rgw" secondAttribute="centerY" constant="1.5" id="7R4-45-3tg"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hWv-in-rgw" secondAttribute="trailing" constant="8" id="F7q-eI-TPJ"/>
+                                                <constraint firstItem="sJF-5B-bLT" firstAttribute="leading" secondItem="tf2-xU-wyY" secondAttribute="leadingMargin" constant="10" id="Zdy-ej-c5X"/>
+                                                <constraint firstAttribute="centerY" secondItem="sJF-5B-bLT" secondAttribute="centerY" id="nfw-5N-9pQ"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="bmw-Js-k2b"/>
-                                                    <exclude reference="eI1-6S-pOz"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="constraints">
-                                                    <include reference="bmw-Js-k2b"/>
-                                                    <include reference="eI1-6S-pOz"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MealCell" textLabel="UVy-Bt-Ad1" detailTextLabel="lat-f6-rWh" style="IBUITableViewCellStyleValue1" id="9qY-mZ-afe">
@@ -127,25 +113,11 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="w2H-R2-syf" firstAttribute="leading" secondItem="qca-eo-9nR" secondAttribute="leadingMargin" constant="10" id="Ik1-RD-69P"/>
-                                                <constraint firstAttribute="centerY" secondItem="w2H-R2-syf" secondAttribute="centerY" constant="0.25" id="M0r-V2-edf"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="HIK-em-is8" secondAttribute="trailing" constant="8" id="pZr-gM-XgE"/>
-                                                <constraint firstItem="w2H-R2-syf" firstAttribute="leading" secondItem="qca-eo-9nR" secondAttribute="leadingMargin" constant="10" id="tby-BF-sIT"/>
-                                                <constraint firstAttribute="centerY" secondItem="w2H-R2-syf" secondAttribute="centerY" id="xNW-M1-Cwy"/>
-                                                <constraint firstAttribute="centerY" secondItem="HIK-em-is8" secondAttribute="centerY" constant="-0.25" id="xyp-eY-RD8"/>
+                                                <constraint firstItem="w2H-R2-syf" firstAttribute="leading" secondItem="qca-eo-9nR" secondAttribute="leadingMargin" constant="10" id="IYv-oz-AsF"/>
+                                                <constraint firstAttribute="centerY" secondItem="HIK-em-is8" secondAttribute="centerY" constant="-0.5" id="TtO-bj-kkV"/>
+                                                <constraint firstAttribute="centerY" secondItem="w2H-R2-syf" secondAttribute="centerY" id="UBb-AB-i6M"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="HIK-em-is8" secondAttribute="trailing" constant="8" id="vVL-vN-F5D"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="M0r-V2-edf"/>
-                                                    <exclude reference="tby-BF-sIT"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="constraints">
-                                                    <include reference="M0r-V2-edf"/>
-                                                    <include reference="tby-BF-sIT"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" textLabel="pPk-5k-134" detailTextLabel="jD4-Hm-wpb" style="IBUITableViewCellStyleValue1" id="ila-na-wMJ">
@@ -283,19 +255,21 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" textLabel="Eh5-wf-MiN" style="IBUITableViewCellStyleDefault" id="WAH-tA-xUb">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" id="WAH-tA-xUb" customClass="AddIngredientTableViewCell" customModule="GroceryGetter" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WAH-tA-xUb" id="Jxx-uR-MFM">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Eh5-wf-MiN">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9BT-pW-GSO">
+                                            <rect key="frame" x="8" y="6" width="584" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="ingredientNameTextField" destination="9BT-pW-GSO" id="gIz-ZJ-C4X"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -316,7 +290,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akl-Wj-RR9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="757" y="-238"/>
+            <point key="canvasLocation" x="757" y="-240"/>
         </scene>
         <!--Menus-->
         <scene sceneID="9Hz-Pm-DiM">
@@ -364,4 +338,5 @@
             <point key="canvasLocation" x="-1714" y="172"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>
