@@ -17,6 +17,10 @@ class HomeTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.tableView.reloadData()
+    }
 
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -28,27 +32,17 @@ class HomeTableViewController: UITableViewController {
                 cell.hidden = true
             } else {
                 cell.textLabel?.text = appDelegate.mealArray[indexPath.row - 1].mealName
-                cell.detailTextLabel?.text = "\(appDelegate.mealArray[indexPath.row - 1].ingredientArray.count) items"
+                cell.detailTextLabel?.text = "\(appDelegate.mealArray[indexPath.row - 1].numberOfIngredients) items"
             }
         } else if (indexPath.section == 1 && indexPath.row > 0) {
             if(indexPath.row > appDelegate.menuArray.count) {
                 cell.hidden = true
             } else {
                 cell.textLabel?.text = appDelegate.menuArray[indexPath.row - 1].menuName
-                cell.detailTextLabel?.text = "\(appDelegate.menuArray[indexPath.row - 1].mealArray.count) meals"
+                cell.detailTextLabel?.text = "\(appDelegate.menuArray[indexPath.row - 1].numberOfMeals) meals"
             }
         }
         return cell
-    }
-    
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if (section == 0) {
-            return "Recent Meals"
-        } else if (section == 1) {
-            return "Recent Menus"
-        }
-        
-        return "Default"
     }
 
     /*

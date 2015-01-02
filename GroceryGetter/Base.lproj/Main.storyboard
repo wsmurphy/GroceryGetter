@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cYS-Q0-dF5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cYS-Q0-dF5">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection id="uG7-OS-Yee">
+                            <tableViewSection headerTitle="Recent Meals" id="uG7-OS-Yee">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="H6Y-85-YO4">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -102,7 +102,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="BNb-SR-fio">
+                            <tableViewSection headerTitle="Recent Menus" id="BNb-SR-fio">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="nQv-5o-bg3">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -200,7 +200,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6wW-Ba-t6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="310" y="284"/>
+            <point key="canvasLocation" x="-902" y="172"/>
         </scene>
         <!--Meals-->
         <scene sceneID="VRG-0w-sL1">
@@ -238,12 +238,85 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Meals" id="Yem-af-8aS">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Qux-UZ-VND"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Qux-UZ-VND">
+                            <connections>
+                                <segue destination="jkW-hd-N0v" kind="show" id="Bef-Zw-QQd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mtt-65-3fy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1080" y="-126"/>
+            <point key="canvasLocation" x="-132" y="-238"/>
+        </scene>
+        <!--New Meal-->
+        <scene sceneID="Mpa-pe-yGE">
+            <objects>
+                <tableViewController id="jkW-hd-N0v" customClass="NewMealTableViewController" customModule="GroceryGetter" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Rur-pX-8eu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="ERi-ie-rwg">
+                            <rect key="frame" x="0.0" y="64" width="600" height="59"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Kp-8u-aEL">
+                                    <rect key="frame" x="104" y="14" width="488" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meal Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xu-Z8-zDL">
+                                    <rect key="frame" x="8" y="18" width="88" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="1Kp-8u-aEL" firstAttribute="leading" secondItem="9xu-Z8-zDL" secondAttribute="trailing" constant="8" id="195-OH-tiS"/>
+                                <constraint firstItem="9xu-Z8-zDL" firstAttribute="top" secondItem="ERi-ie-rwg" secondAttribute="top" constant="18" id="8Eb-Mi-e37"/>
+                                <constraint firstItem="1Kp-8u-aEL" firstAttribute="top" secondItem="ERi-ie-rwg" secondAttribute="top" constant="14" id="TCg-Or-2gG"/>
+                                <constraint firstAttribute="trailing" secondItem="1Kp-8u-aEL" secondAttribute="trailing" constant="8" id="ivv-OW-bq0"/>
+                                <constraint firstItem="9xu-Z8-zDL" firstAttribute="leading" secondItem="ERi-ie-rwg" secondAttribute="leading" constant="8" id="nXI-ck-d7E"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" textLabel="Eh5-wf-MiN" style="IBUITableViewCellStyleDefault" id="WAH-tA-xUb">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WAH-tA-xUb" id="Jxx-uR-MFM">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Eh5-wf-MiN">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="jkW-hd-N0v" id="YG9-EY-YL9"/>
+                            <outlet property="delegate" destination="jkW-hd-N0v" id="btf-v6-6pF"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="New Meal" id="3AI-C3-2bg">
+                        <barButtonItem key="leftBarButtonItem" title="Save" id="7K0-jv-1uS">
+                            <connections>
+                                <action selector="saveTapped:" destination="jkW-hd-N0v" id="3k1-I9-AwK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mealNameTextField" destination="1Kp-8u-aEL" id="aB4-G7-0LY"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="akl-Wj-RR9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="757" y="-238"/>
         </scene>
         <!--Menus-->
         <scene sceneID="9Hz-Pm-DiM">
@@ -270,7 +343,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmz-nd-mrJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1080" y="635"/>
+            <point key="canvasLocation" x="-132" y="523"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mut-wL-dqp">
@@ -288,7 +361,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mBU-Kc-0cv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-502" y="284"/>
+            <point key="canvasLocation" x="-1714" y="172"/>
         </scene>
     </scenes>
 </document>

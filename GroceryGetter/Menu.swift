@@ -12,4 +12,9 @@ class Menu: NSObject {
    
     var menuName : String = ""
     var mealArray : Array<Meal> = []
+    var numberOfMeals: Int {
+        get {
+            return mealArray.count
+        }
+    }
 }
