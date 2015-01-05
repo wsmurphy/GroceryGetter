@@ -10,7 +10,7 @@ import UIKit
 
 class Meal: NSObject {
     
-    var mealName : String = ""
+    var name : String = ""
     var ingredientArray : Array<String> = []
     var lastModifiedDate: NSDate = NSDate()
     var numberOfIngredients: Int {

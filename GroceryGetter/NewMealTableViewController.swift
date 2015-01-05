@@ -32,6 +32,7 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
     @IBAction func saveTapped(sender: AnyObject) {
         //TODO: Resign first responder on any cell that may be currently editing, so that we'll save the item before exiting
         
+        
         //Validate that we have minimum data to create a new meal
         if(mealNameTextField.text.isEmpty == true) {
             var alert = UIAlertController(title: "Error", message: "Meal Name must be set", preferredStyle: UIAlertControllerStyle.Alert)
@@ -56,7 +57,7 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
                 self.presentViewController(alert, animated: true, completion: nil)
             } else {
                 //Finish updates and add this meal to the master list
-                meal.mealName = mealNameTextField.text
+                meal.name = mealNameTextField.text
                 meal.lastModifiedDate = NSDate()
                 appDelegate.mealArray.append(meal)
                 self.navigationController?.popViewControllerAnimated(true)
@@ -65,10 +66,8 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
     }
     
     func ingredientNameEdited(ingredientName: String, indexPath: NSIndexPath) {
-        println("ingredient Name Edited at indexPath \(indexPath)")
-        
         if(!ingredientName.isEmpty) {
-            //TODO: Allow editing previously added items, and handle updating in the array, instead of apped every time
+            //TODO: Allow editing previously added items, and handle updating in the array, instead of append every time
             meal.ingredientArray.append(ingredientName)
         }
         

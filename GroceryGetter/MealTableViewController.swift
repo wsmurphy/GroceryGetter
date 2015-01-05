@@ -14,6 +14,10 @@ class MealTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.tableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -31,7 +35,7 @@ class MealTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("MealCell", forIndexPath: indexPath) as UITableViewCell
 
         // Configure the cell...
-        cell.textLabel?.text = appDelegate.mealArray[indexPath.row].mealName
+        cell.textLabel?.text = appDelegate.mealArray[indexPath.row].name
         if(appDelegate.mealArray[indexPath.row].numberOfIngredients == 1) {
             cell.detailTextLabel?.text = "\(appDelegate.mealArray[indexPath.row].numberOfIngredients) item"
         } else {
@@ -39,6 +43,12 @@ class MealTableViewController: UITableViewController {
         }
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MealDetailTableViewController") as MealDetailTableViewController
+        vc.meal = appDelegate.mealArray[indexPath.row]
+        self.showViewController(vc, sender: self)
     }
 
     // Override to support conditional editing of the table view.
@@ -56,15 +66,5 @@ class MealTableViewController: UITableViewController {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }  
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -20,6 +20,8 @@
 		609E92D11A524AF4007FB9C0 /* MealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E92D01A524AF4007FB9C0 /* MealTableViewController.swift */; };
 		609E92D31A524C0B007FB9C0 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E92D21A524C0B007FB9C0 /* MenuTableViewController.swift */; };
 		60C366241A559A3700FF8A41 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C366231A559A3700FF8A41 /* Meal.swift */; };
+		60CBF9841A5A2DC800855AAD /* MealDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CBF9831A5A2DC800855AAD /* MealDetailTableViewController.swift */; };
+		60CBF9861A5A31E400855AAD /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CBF9851A5A31E400855AAD /* IngredientTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		609E92D01A524AF4007FB9C0 /* MealTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealTableViewController.swift; sourceTree = "<group>"; };
 		609E92D21A524C0B007FB9C0 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		60C366231A559A3700FF8A41 /* Meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		60CBF9831A5A2DC800855AAD /* MealDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealDetailTableViewController.swift; sourceTree = "<group>"; };
+		60CBF9851A5A31E400855AAD /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,7 @@
 				609E92D01A524AF4007FB9C0 /* MealTableViewController.swift */,
 				609E92D21A524C0B007FB9C0 /* MenuTableViewController.swift */,
 				605ADA691A56FD2600B68587 /* NewMealTableViewController.swift */,
+				60CBF9831A5A2DC800855AAD /* MealDetailTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -77,6 +82,7 @@
 				609E92C81A523F73007FB9C0 /* MenuTableViewCell.swift */,
 				609E92CA1A523F7F007FB9C0 /* MealTableViewCell.swift */,
 				605ADA6B1A57193600B68587 /* AddIngredientTableViewCell.swift */,
+				60CBF9851A5A31E400855AAD /* IngredientTableViewCell.swift */,
 			);
 			name = "Table Cells";
 			sourceTree = "<group>";
@@ -197,6 +203,8 @@
 				609E92D31A524C0B007FB9C0 /* MenuTableViewController.swift in Sources */,
 				609E92C71A523C1A007FB9C0 /* HomeTableViewController.swift in Sources */,
 				605ADA6A1A56FD2600B68587 /* NewMealTableViewController.swift in Sources */,
+				60CBF9861A5A31E400855AAD /* IngredientTableViewCell.swift in Sources */,
+				60CBF9841A5A2DC800855AAD /* MealDetailTableViewController.swift in Sources */,
 				609E92A71A523B21007FB9C0 /* AppDelegate.swift in Sources */,
 				609E92C91A523F73007FB9C0 /* MenuTableViewCell.swift in Sources */,
 			);

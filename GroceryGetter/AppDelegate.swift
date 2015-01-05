@@ -21,19 +21,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //TODO: Replace with actual data
         var meal = Meal()
-        meal.mealName = "Meal 1"
+        meal.name = "Meal 1"
         meal.ingredientArray = ["Item 1", "Item 2"]
         
         var meal2 = Meal()
-        meal2.mealName = "Meal 2"
+        meal2.name = "Meal 2"
         meal2.ingredientArray = ["Item 3", "Item 4"]
         
         var meal3 = Meal()
-        meal3.mealName = "Meal 3"
+        meal3.name = "Meal 3"
         meal3.ingredientArray = ["Item 3", "Item 4", "Item 4", "Item 4", "Item 4", "Item 4"]
         
         var meal4 = Meal()
-        meal4.mealName = "Meal 4"
+        meal4.name = "Meal 4"
         meal4.ingredientArray = ["Item 3", "Item 4", "Item 4", "Item 4"]
         
         mealArray.append(meal)

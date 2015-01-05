@@ -31,7 +31,7 @@ class HomeTableViewController: UITableViewController {
             if(indexPath.row >  appDelegate.mealArray.count) {
                 cell.hidden = true
             } else {
-                cell.textLabel?.text = appDelegate.mealArray[indexPath.row - 1].mealName
+                cell.textLabel?.text = appDelegate.mealArray[indexPath.row - 1].name
                 if(appDelegate.mealArray[indexPath.row - 1].numberOfIngredients == 1) {
                     cell.detailTextLabel?.text = "\(appDelegate.mealArray[indexPath.row - 1].numberOfIngredients) item"
                 } else {

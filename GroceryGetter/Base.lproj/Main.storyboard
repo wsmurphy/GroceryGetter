@@ -219,7 +219,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mtt-65-3fy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-132" y="-238"/>
+            <point key="canvasLocation" x="10" y="-175"/>
         </scene>
         <!--New Meal-->
         <scene sceneID="Mpa-pe-yGE">
@@ -290,7 +290,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akl-Wj-RR9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="757" y="-240"/>
+            <point key="canvasLocation" x="899" y="-175"/>
         </scene>
         <!--Menus-->
         <scene sceneID="9Hz-Pm-DiM">
@@ -301,7 +301,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="y97-9Q-y2K">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" id="y97-9Q-y2K">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y97-9Q-y2K" id="wjQ-GH-SWx">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -317,7 +317,33 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmz-nd-mrJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-132" y="523"/>
+            <point key="canvasLocation" x="10" y="671"/>
+        </scene>
+        <!--Meal Detail Table View Controller-->
+        <scene sceneID="zck-yN-1zy">
+            <objects>
+                <tableViewController storyboardIdentifier="MealDetailTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Nua-me-7aO" customClass="MealDetailTableViewController" customModule="GroceryGetter" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="8rJ-Wv-PeH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientTableCell" id="axB-iU-fV9" customClass="IngredientTableViewCell" customModule="GroceryGetter" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="axB-iU-fV9" id="KkX-me-EY3">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Nua-me-7aO" id="8cG-Rk-Ulf"/>
+                            <outlet property="delegate" destination="Nua-me-7aO" id="w9q-xe-xYH"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ikX-qA-gIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="18" y="-935"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mut-wL-dqp">
