@@ -23,6 +23,10 @@ class MealTableViewController: UITableViewController, UISplitViewControllerDeleg
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func backButtonTapped(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 

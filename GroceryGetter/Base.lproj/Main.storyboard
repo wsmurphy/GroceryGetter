@@ -213,6 +213,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Meals" id="Yem-af-8aS">
+                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="Ybj-Z0-o0O">
+                            <connections>
+                                <action selector="backButtonTapped:" destination="NFP-Vy-xab" id="wjB-sK-KLZ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Qux-UZ-VND">
                             <connections>
                                 <segue destination="jkW-hd-N0v" kind="show" id="U2g-4q-xUI"/>
