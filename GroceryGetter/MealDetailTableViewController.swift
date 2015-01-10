@@ -11,7 +11,6 @@ import UIKit
 class MealDetailTableViewController: UITableViewController {
     var meal : Meal?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,11 +27,6 @@ class MealDetailTableViewController: UITableViewController {
         self.navigationItem.title = meal?.name
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
@@ -44,7 +38,7 @@ class MealDetailTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("IngredientTableCell", forIndexPath: indexPath) as IngredientTableViewCell
 
         // Configure the cell...
-        cell.textLabel?.text = meal?.ingredientArray[indexPath.row]
+        cell.textLabel?.text = meal?.ingredientArray[indexPath.row].name
         return cell
     }
 
@@ -58,23 +52,9 @@ class MealDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
+            //TODO: Remove from Core Data meal object
             meal?.ingredientArray.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 }

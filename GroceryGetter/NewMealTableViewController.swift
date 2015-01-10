@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 class NewMealTableViewController: UITableViewController, AddIngredientCellDelegate  {
     @IBOutlet weak var mealNameTextField: UITextField!
-    var meal : Meal = Meal()
+    var mealName = ""
+    var ingredientArray : [String] = []
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     override func viewDidLoad() {
@@ -49,7 +51,7 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
             //TODO: Restore correct text field style, in case it was red before
         //   self.mealNameTextField.layer.borderColor = UIColor.clearColor().CGColor
 
-            if (meal.ingredientArray.count == 0) {
+            if (ingredientArray.count == 0) {
                 var alert = UIAlertController(title: "Error", message: "Must have at least one ingredient", preferredStyle: UIAlertControllerStyle.Alert)
                 let cancelAction = UIAlertAction(title: "OK", style: .Cancel){ (action) in
                 }
@@ -57,18 +59,49 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
                 self.presentViewController(alert, animated: true, completion: nil)
             } else {
                 //Finish updates and add this meal to the master list
-                meal.name = mealNameTextField.text
-                meal.lastModifiedDate = NSDate()
-                appDelegate.mealArray.append(meal)
+                mealName = mealNameTextField.text
+                
+                //TODO: Replace with Core Data save
+    //            appDelegate.mealArray.append(meal)
+                saveMeal()
                 self.navigationController?.popViewControllerAnimated(true)
             }
         }
     }
     
+    func saveMeal() {
+        let managedContext = appDelegate.managedObjectContext!
+        
+        //2
+        let mealEntity = NSEntityDescription.entityForName("Meal", inManagedObjectContext: managedContext)
+        
+        let managedMeal = NSManagedObject(entity: mealEntity!, insertIntoManagedObjectContext:managedContext)
+        
+        //3
+        managedMeal.setValue(mealName, forKey: "name")
+
+        let ingredientEntity = NSEntityDescription.entityForName("Ingredient", inManagedObjectContext: managedContext)
+        var ingredients = NSMutableSet(capacity: ingredientArray.count)
+        for ingredient in ingredientArray {
+            let managedIngredient = NSManagedObject(entity: ingredientEntity!, insertIntoManagedObjectContext:managedContext)
+            managedIngredient.setValue(ingredient, forKey: "name")
+            ingredients.addObject(managedIngredient)
+        }
+        managedMeal.setValue(ingredients, forKey: "containedIngredients")
+        
+        //4
+        var error: NSError?
+        if !managedContext.save(&error) {
+            println("Could not save \(error), \(error?.userInfo)")
+        }  
+        //5
+        appDelegate.mealArray.append(managedMeal)
+    }
+    
     func ingredientNameEdited(ingredientName: String, indexPath: NSIndexPath) {
         if(!ingredientName.isEmpty) {
             //TODO: Allow editing previously added items, and handle updating in the array, instead of append every time
-            meal.ingredientArray.append(ingredientName)
+            ingredientArray.append(ingredientName)
         }
         
         self.tableView.reloadData()
@@ -78,10 +111,10 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        if(meal.ingredientArray.count == 0) {
+        if(ingredientArray.count == 0) {
             return 1
         } else {
-            return meal.ingredientArray.count + 1
+            return ingredientArray.count + 1
         }
     }
     
@@ -89,12 +122,12 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
         let cell = tableView.dequeueReusableCellWithIdentifier("IngredientCell", forIndexPath: indexPath) as AddIngredientTableViewCell
 
         // Configure the cell...
-        if(indexPath.row >= meal.ingredientArray.count) {
+        if(indexPath.row >= ingredientArray.count) {
             cell.ingredientNameTextField.text = "Tap to add ingredient"
             cell.ingredientNameTextField.textColor = UIColor.grayColor()
             cell.ingredientNameTextField.userInteractionEnabled = true
         } else {
-            cell.ingredientNameTextField.text = meal.ingredientArray[indexPath.row]
+            cell.ingredientNameTextField.text = ingredientArray[indexPath.row]
             cell.ingredientNameTextField.textColor = UIColor.blackColor()
             cell.ingredientNameTextField.userInteractionEnabled = false
         }
@@ -115,7 +148,7 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            meal.ingredientArray.removeAtIndex(indexPath.row)
+            ingredientArray.removeAtIndex(indexPath.row)
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }

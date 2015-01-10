@@ -7,22 +7,10 @@
 //
 
 import UIKit
+import CoreData
 
 class MealTableViewController: UITableViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        self.tableView.reloadData()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,11 +23,12 @@ class MealTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("MealCell", forIndexPath: indexPath) as UITableViewCell
 
         // Configure the cell...
-        cell.textLabel?.text = appDelegate.mealArray[indexPath.row].name
-        if(appDelegate.mealArray[indexPath.row].numberOfIngredients == 1) {
-            cell.detailTextLabel?.text = "\(appDelegate.mealArray[indexPath.row].numberOfIngredients) item"
+        var meal = Meal(managedObject: appDelegate.mealArray[indexPath.row])
+        cell.textLabel?.text = meal.name
+        if(meal.numberOfIngredients == 1) {
+            cell.detailTextLabel?.text = "\(meal.numberOfIngredients) item"
         } else {
-            cell.detailTextLabel?.text = "\(appDelegate.mealArray[indexPath.row].numberOfIngredients) items"
+            cell.detailTextLabel?.text = "\(meal.numberOfIngredients) items"
         }
         
         return cell
@@ -47,7 +36,7 @@ class MealTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MealDetailTableViewController") as MealDetailTableViewController
-        vc.meal = appDelegate.mealArray[indexPath.row]
+        vc.meal = Meal(managedObject: appDelegate.mealArray[indexPath.row])
         self.showViewController(vc, sender: self)
     }
 
@@ -61,6 +50,11 @@ class MealTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
+
+            let managedContext = appDelegate.managedObjectContext!
+            managedContext.deleteObject(appDelegate.mealArray[indexPath.row])
+            managedContext.save(nil)
+            
             appDelegate.mealArray.removeAtIndex(indexPath.row)
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
