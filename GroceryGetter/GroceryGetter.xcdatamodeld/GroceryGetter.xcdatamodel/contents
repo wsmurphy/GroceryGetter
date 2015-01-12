@@ -8,16 +8,16 @@
         <attribute name="lastModifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="containedIngredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient" inverseName="containedInMeal" inverseEntity="Ingredient" syncable="YES"/>
-        <relationship name="containedInMenu" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Menu" inverseName="containedMeals" inverseEntity="Menu" syncable="YES"/>
+        <relationship name="containedInMenu" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Menu" inverseName="containedMeals" inverseEntity="Menu" syncable="YES"/>
     </entity>
     <entity name="Menu" syncable="YES">
         <attribute name="lastModifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="containedMeals" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meal" inverseName="containedInMenu" inverseEntity="Meal" syncable="YES"/>
+        <relationship name="containedMeals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Meal" inverseName="containedInMenu" inverseEntity="Meal" syncable="YES"/>
     </entity>
     <elements>
         <element name="Ingredient" positionX="142" positionY="-109" width="128" height="73"/>
-        <element name="Meal" positionX="-63" positionY="-198" width="135" height="103"/>
-        <element name="Menu" positionX="-270" positionY="-198" width="128" height="88"/>
+        <element name="Meal" positionX="-63" positionY="-198" width="135" height="105"/>
+        <element name="Menu" positionX="-270" positionY="-198" width="128" height="90"/>
     </elements>
 </model>

@@ -45,7 +45,7 @@ class HomeTableViewController: UITableViewController {
             if(indexPath.row > appDelegate.menuArray.count) {
                 cell.hidden = true
             } else {
-                 var menu = Menu(managedObject: appDelegate.mealArray[indexPath.row - 1])
+                 var menu = Menu(managedObject: appDelegate.menuArray[indexPath.row - 1])
                 cell.textLabel?.text = menu.name
                 if(menu.numberOfMeals == 1) {
                     cell.detailTextLabel?.text = "\(menu.numberOfMeals) meal"

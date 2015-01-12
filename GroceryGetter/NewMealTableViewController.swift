@@ -31,6 +31,11 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func cancelTapped(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
     @IBAction func saveTapped(sender: AnyObject) {
         //TODO: Resign first responder on any cell that may be currently editing, so that we'll save the item before exiting
         
