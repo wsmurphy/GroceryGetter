@@ -7,15 +7,27 @@
 //
 
 import UIKit
+import CoreData
 
 class Meal: NSObject {
     
-    var mealName : String = ""
-    var ingredientArray : Array<String> = []
+    var name = ""
+    var ingredientArray : [AnyObject] = []
     var lastModifiedDate: NSDate = NSDate()
     var numberOfIngredients: Int {
         get {
             return ingredientArray.count
         }
+    }
+    
+    
+    init(managedObject: NSManagedObject) {
+        super.init()
+
+        name = managedObject.valueForKey("name") as String
+        //TODO: Set date
+     //   lastModifiedDate = managedObject.valueForKey("lastModifiedDate") as NSDate
+
+        ingredientArray = managedObject.mutableSetValueForKey("containedIngredients").allObjects as NSArray
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 
 class HomeTableViewController: UITableViewController {
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,26 +32,38 @@ class HomeTableViewController: UITableViewController {
             if(indexPath.row >  appDelegate.mealArray.count) {
                 cell.hidden = true
             } else {
-                cell.textLabel?.text = appDelegate.mealArray[indexPath.row - 1].mealName
-                if(appDelegate.mealArray[indexPath.row - 1].numberOfIngredients == 1) {
-                    cell.detailTextLabel?.text = "\(appDelegate.mealArray[indexPath.row - 1].numberOfIngredients) item"
+                var meal = Meal(managedObject: appDelegate.mealArray[indexPath.row - 1])
+                cell.textLabel?.text = meal.name
+                if(meal.numberOfIngredients == 1) {
+                    cell.detailTextLabel?.text = "\(meal.numberOfIngredients) item"
                 } else {
-                    cell.detailTextLabel?.text = "\(appDelegate.mealArray[indexPath.row - 1].numberOfIngredients) items"
+                    cell.detailTextLabel?.text = "\(meal.numberOfIngredients) items"
                 }
+                cell.hidden = false
             }
         } else if (indexPath.section == 1 && indexPath.row > 0) {
             if(indexPath.row > appDelegate.menuArray.count) {
                 cell.hidden = true
             } else {
-                cell.textLabel?.text = appDelegate.menuArray[indexPath.row - 1].menuName
-                if(appDelegate.menuArray[indexPath.row - 1].numberOfMeals == 1) {
-                    cell.detailTextLabel?.text = "\(appDelegate.menuArray[indexPath.row - 1].numberOfMeals) meal"
+                 var menu = Menu(managedObject: appDelegate.mealArray[indexPath.row - 1])
+                cell.textLabel?.text = menu.name
+                if(menu.numberOfMeals == 1) {
+                    cell.detailTextLabel?.text = "\(menu.numberOfMeals) meal"
                 } else {
-                    cell.detailTextLabel?.text = "\(appDelegate.menuArray[indexPath.row - 1].numberOfMeals) meals"
+                    cell.detailTextLabel?.text = "\(menu.numberOfMeals) meals"
                 }
+                cell.hidden = false
             }
         }
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if(indexPath.section == 0 && indexPath.row > 0) {
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MealDetailTableViewController") as MealDetailTableViewController
+            vc.meal = Meal(managedObject: appDelegate.mealArray[indexPath.row - 1])
+            self.showViewController(vc, sender: self)
+        }
     }
 
     /*
