@@ -10,25 +10,9 @@ import UIKit
 
 class MenuTableViewController: UITableViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         return appDelegate.menuArray.count
     }
@@ -46,6 +30,12 @@ class MenuTableViewController: UITableViewController {
         }
 
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MenuDetailTableViewController") as MenuDetailTableViewController
+        vc.menu = Menu(managedObject: appDelegate.menuArray[indexPath.row])
+        self.showViewController(vc, sender: self)
     }
 
     // Override to support conditional editing of the table view.

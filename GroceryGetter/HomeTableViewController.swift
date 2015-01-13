@@ -11,14 +11,6 @@ import UIKit
 class HomeTableViewController: UITableViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     override func viewWillAppear(animated: Bool) {
         self.tableView.reloadData()
     }
@@ -63,17 +55,10 @@ class HomeTableViewController: UITableViewController {
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MealDetailTableViewController") as MealDetailTableViewController
             vc.meal = Meal(managedObject: appDelegate.mealArray[indexPath.row - 1])
             self.showViewController(vc, sender: self)
+        } else if(indexPath.section == 1 && indexPath.row > 0) {
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MenuDetailTableViewController") as MenuDetailTableViewController
+            vc.menu = Menu(managedObject: appDelegate.menuArray[indexPath.row - 1])
+            self.showViewController(vc, sender: self)
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -1,37 +1,37 @@
 //
-//  MealDetailTableViewController.swift
+//  MenuDetailTableViewController.swift
 //  GroceryGetter
 //
-//  Created by Murphy, Stephen - William S on 1/4/15.
+//  Created by Murphy, Stephen - William S on 1/13/15.
 //
 //
 
 import UIKit
 
-class MealDetailTableViewController: UITableViewController {
-    var meal : Meal?
-    
+class MenuDetailTableViewController: UITableViewController {
+    var menu : Menu?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tableView.registerClass(IngredientTableViewCell.self, forCellReuseIdentifier: "IngredientTableCell")
+
+        self.tableView.registerClass(IngredientTableViewCell.self, forCellReuseIdentifier: "MealTableCell")
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationItem.title = meal?.name
+        self.navigationItem.title = menu?.name
     }
 
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return meal!.numberOfIngredients
+        return menu!.numberOfMeals
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("IngredientTableCell", forIndexPath: indexPath) as IngredientTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("MealTableCell", forIndexPath: indexPath) as UITableViewCell
 
         // Configure the cell...
-        cell.textLabel?.text = meal?.ingredientArray[indexPath.row].name
+        cell.textLabel?.text = menu?.mealArray[indexPath.row].name
         return cell
     }
 
@@ -46,7 +46,7 @@ class MealDetailTableViewController: UITableViewController {
         if editingStyle == .Delete {
             // Delete the row from the data source
             //TODO: Remove from Core Data meal object
-            meal?.ingredientArray.removeAtIndex(indexPath.row)
+            menu?.mealArray.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
