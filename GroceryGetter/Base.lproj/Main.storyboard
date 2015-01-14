@@ -13,6 +13,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="8Vr-jA-3J5">
+                            <rect key="frame" x="0.0" y="64" width="600" height="88"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LMV-3b-rnf">
+                                    <rect key="frame" x="233" y="14" width="135" height="60"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="Fne-AH-Wkj"/>
+                                        <constraint firstAttribute="width" constant="88" id="VO4-oa-V4y"/>
+                                        <constraint firstAttribute="height" constant="60" id="clI-6G-vPu"/>
+                                        <constraint firstAttribute="width" constant="135" id="qI1-Kc-JoD"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                    <state key="normal" title="Build a List!">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="Fne-AH-Wkj"/>
+                                            <exclude reference="VO4-oa-V4y"/>
+                                        </mask>
+                                    </variation>
+                                    <connections>
+                                        <action selector="listButtonTapped:" destination="lhY-xC-lxO" eventType="touchUpInside" id="TjV-lo-cAZ"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="centerY" secondItem="LMV-3b-rnf" secondAttribute="centerY" id="Gj7-Ge-CgR"/>
+                                <constraint firstAttribute="centerX" secondItem="LMV-3b-rnf" secondAttribute="centerX" constant="-0.5" id="UBh-TY-MnB"/>
+                            </constraints>
+                        </view>
                         <sections>
                             <tableViewSection headerTitle="Recent Meals" id="uG7-OS-Yee">
                                 <cells>
@@ -169,10 +202,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Grocery Getter" id="ID1-Ut-wuw"/>
+                    <connections>
+                        <outlet property="listButton" destination="LMV-3b-rnf" id="7lx-Zx-cIO"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6wW-Ba-t6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-902" y="172"/>
+            <point key="canvasLocation" x="-903" y="172"/>
         </scene>
         <!--Meals-->
         <scene sceneID="VRG-0w-sL1">

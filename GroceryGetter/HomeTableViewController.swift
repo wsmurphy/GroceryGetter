@@ -10,9 +10,17 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    
+    @IBOutlet weak var listButton: UIButton!
+
     override func viewWillAppear(animated: Bool) {
         self.tableView.reloadData()
+        
+        
+        if (appDelegate.list?.valueForKey("name") != nil) {
+            listButton.titleLabel?.text = "See My List!"
+        } else {
+            listButton.titleLabel?.text = "Build My List!"
+        }
     }
 
     // MARK: - Table view data source
@@ -60,5 +68,9 @@ class HomeTableViewController: UITableViewController {
             vc.menu = Menu(managedObject: appDelegate.menuArray[indexPath.row - 1])
             self.showViewController(vc, sender: self)
         }
+    }
+    
+    @IBAction func listButtonTapped(sender: AnyObject) {
+        //TODO: Push either the new list or list details view
     }
 }
