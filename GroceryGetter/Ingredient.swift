@@ -6,9 +6,9 @@
 //
 //
 
-import UIKit
+import CoreData
 
-class Ingredient: NSObject {
-    var name = ""
-   
+class Ingredient: NSManagedObject {
+    @NSManaged var name : String
+    @NSManaged var inMeal : Meal
 }

@@ -14,9 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var mealArray = [NSManagedObject]()
-    var menuArray = [NSManagedObject]()
-    var list : List?
+    var mealArray = [Meal]()
+    var menuArray = [Menu]()
+    var list = [List]()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -95,11 +95,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func retreiveMealArray() {
         let fetchRequest = NSFetchRequest(entityName:"Meal")
         
-        let fetchedResults =
-        self.managedObjectContext!.executeFetchRequest(fetchRequest,
-            error: nil) as [NSManagedObject]?
-        
-        if let results = fetchedResults {
+        if let results = self.managedObjectContext!.executeFetchRequest(fetchRequest,
+            error: nil) as [Meal]? {
             mealArray = results
         }
     }
@@ -107,11 +104,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func retreiveMenuArray() {
         let fetchRequest = NSFetchRequest(entityName:"Menu")
         
-        let fetchedResults =
-        self.managedObjectContext!.executeFetchRequest(fetchRequest,
-            error: nil) as [NSManagedObject]?
-        
-        if let results = fetchedResults {
+        if let results = self.managedObjectContext!.executeFetchRequest(fetchRequest,
+            error: nil) as [Menu]? {
             menuArray = results
         }
     }
@@ -119,13 +113,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func retreiveList() {
         let fetchRequest = NSFetchRequest(entityName:"List")
         
-        let fetchedResults =
-        self.managedObjectContext!.executeFetchRequest(fetchRequest,
-            error: nil) as [NSManagedObject]?
-        
-        if let results = fetchedResults {
+        if let results = self.managedObjectContext!.executeFetchRequest(fetchRequest,
+            error: nil) as [List]? {
             if(!results.isEmpty) {
-                list = List(managedObject: results[0])
+                list = results
             }
         }
     }

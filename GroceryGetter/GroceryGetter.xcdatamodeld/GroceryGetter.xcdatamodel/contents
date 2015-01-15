@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="13F34" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Ingredient" syncable="YES">
+    <entity name="Ingredient" representedClassName="GroceryGetter.Ingredient" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="containedInList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="List" inverseName="containedIngredients" inverseEntity="List" syncable="YES"/>
-        <relationship name="containedInMeal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meal" inverseName="containedIngredients" inverseEntity="Meal" syncable="YES"/>
+        <relationship name="inMeal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meal" inverseName="ingredients" inverseEntity="Meal" syncable="YES"/>
     </entity>
-    <entity name="List" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="containedIngredients" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ingredient" inverseName="containedInList" inverseEntity="Ingredient" syncable="YES"/>
-        <relationship name="containedMeals" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meal" inverseName="containedInList" inverseEntity="Meal" syncable="YES"/>
-        <relationship name="containedMenus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Menu" inverseName="containedInList" inverseEntity="Menu" syncable="YES"/>
+    <entity name="List" representedClassName="GroceryGetter.List" syncable="YES">
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient" syncable="YES"/>
+        <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Meal" inverseName="inList" inverseEntity="Meal" syncable="YES"/>
+        <relationship name="menus" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Menu" inverseName="inList" inverseEntity="Menu" syncable="YES"/>
     </entity>
-    <entity name="Meal" syncable="YES">
+    <entity name="Meal" representedClassName="GroceryGetter.Meal" syncable="YES">
         <attribute name="lastModifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="containedIngredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient" inverseName="containedInMeal" inverseEntity="Ingredient" syncable="YES"/>
-        <relationship name="containedInList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="List" inverseName="containedMeals" inverseEntity="List" syncable="YES"/>
-        <relationship name="containedInMenu" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Menu" inverseName="containedMeals" inverseEntity="Menu" syncable="YES"/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient" inverseName="inMeal" inverseEntity="Ingredient" syncable="YES"/>
+        <relationship name="inList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="List" inverseName="meals" inverseEntity="List" syncable="YES"/>
+        <relationship name="inMenu" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Menu" inverseName="meals" inverseEntity="Menu" syncable="YES"/>
     </entity>
-    <entity name="Menu" syncable="YES">
+    <entity name="Menu" representedClassName="GroceryGetter.Menu" syncable="YES">
         <attribute name="lastModifiedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="containedInList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="List" inverseName="containedMenus" inverseEntity="List" syncable="YES"/>
-        <relationship name="containedMeals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Meal" inverseName="containedInMenu" inverseEntity="Meal" syncable="YES"/>
+        <relationship name="inList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="List" inverseName="menus" inverseEntity="List" syncable="YES"/>
+        <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Meal" inverseName="inMenu" inverseEntity="Meal" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Ingredient" positionX="142" positionY="-109" width="128" height="90"/>
+        <element name="Ingredient" positionX="142" positionY="-109" width="128" height="73"/>
+        <element name="List" positionX="-63" positionY="-135" width="128" height="88"/>
         <element name="Meal" positionX="-63" positionY="-198" width="135" height="118"/>
-        <element name="Menu" positionX="-270" positionY="-198" width="128" height="105"/>
-        <element name="List" positionX="-63" positionY="-135" width="128" height="103"/>
+        <element name="Menu" positionX="-270" positionY="-198" width="128" height="103"/>
     </elements>
 </model>

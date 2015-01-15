@@ -27,7 +27,7 @@ class NewMenuTableViewController: UITableViewController {
         let cell = UITableViewCell()
 
         // Configure the cell...
-        var meal = Meal(managedObject: appDelegate.mealArray[indexPath.row])
+        var meal = appDelegate.mealArray[indexPath.row]
         cell.textLabel?.text = meal.name
         cell.accessoryType = UITableViewCellAccessoryType.None;
         
@@ -73,12 +73,9 @@ class NewMenuTableViewController: UITableViewController {
     func saveMenu() {
         let managedContext = appDelegate.managedObjectContext!
         
-        //2
         let menuEntity = NSEntityDescription.entityForName("Menu", inManagedObjectContext: managedContext)
-        
         let managedMenu = NSManagedObject(entity: menuEntity!, insertIntoManagedObjectContext:managedContext)
         
-        //3
         managedMenu.setValue(menuName, forKey: "name")
         
         //TODO: Put in MealArray from saved indexes
@@ -88,14 +85,9 @@ class NewMenuTableViewController: UITableViewController {
             meals.addObject(appDelegate.mealArray[arrayIndex])
         }
 
-        managedMenu.setValue(meals, forKey: "containedMeals")
+        managedMenu.setValue(meals, forKey: "meals")
 
-        //4
-        var error: NSError?
-        if !managedContext.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
-        }
-        //5
-        appDelegate.menuArray.append(managedMenu)
+        appDelegate.saveContext()
+        appDelegate.retreiveMenuArray()
     }
 }

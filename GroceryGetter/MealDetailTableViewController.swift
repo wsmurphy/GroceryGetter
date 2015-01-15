@@ -9,6 +9,7 @@
 import UIKit
 
 class MealDetailTableViewController: UITableViewController {
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     var meal : Meal?
     
     override func viewDidLoad() {
@@ -31,7 +32,7 @@ class MealDetailTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("IngredientTableCell", forIndexPath: indexPath) as IngredientTableViewCell
 
         // Configure the cell...
-        cell.textLabel?.text = meal?.ingredientArray[indexPath.row].name
+        cell.textLabel?.text = meal?.ingredients.allObjects[indexPath.row].name
         return cell
     }
 
@@ -45,8 +46,12 @@ class MealDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            //TODO: Remove from Core Data meal object
-            meal?.ingredientArray.removeAtIndex(indexPath.row)
+            var item = meal!.ingredients.allObjects[indexPath.row] as Ingredient
+            var mutableIngredients = meal!.mutableSetValueForKey("ingredients")
+            mutableIngredients.removeObject(item)
+                
+            appDelegate.saveContext()
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }

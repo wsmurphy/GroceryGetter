@@ -31,7 +31,7 @@ class MenuDetailTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("MealTableCell", forIndexPath: indexPath) as UITableViewCell
 
         // Configure the cell...
-        cell.textLabel?.text = menu?.mealArray[indexPath.row].name
+        cell.textLabel?.text = menu?.meals.allObjects[indexPath.row].name
         return cell
     }
 
@@ -46,7 +46,7 @@ class MenuDetailTableViewController: UITableViewController {
         if editingStyle == .Delete {
             // Delete the row from the data source
             //TODO: Remove from Core Data meal object
-            menu?.mealArray.removeAtIndex(indexPath.row)
+     //       menu?.meals.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }

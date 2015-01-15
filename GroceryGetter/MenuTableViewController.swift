@@ -21,7 +21,7 @@ class MenuTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath) as UITableViewCell
 
         // Configure the cell...
-        var menu = Menu(managedObject: appDelegate.menuArray[indexPath.row])
+        var menu = appDelegate.menuArray[indexPath.row]
         cell.textLabel?.text = menu.name
         if(menu.numberOfMeals == 1) {
             cell.detailTextLabel?.text = "\(menu.numberOfMeals) meal"
@@ -34,7 +34,7 @@ class MenuTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MenuDetailTableViewController") as MenuDetailTableViewController
-        vc.menu = Menu(managedObject: appDelegate.menuArray[indexPath.row])
+        vc.menu = appDelegate.menuArray[indexPath.row]
         self.showViewController(vc, sender: self)
     }
 

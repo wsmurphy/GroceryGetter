@@ -55,8 +55,6 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
                 //Finish updates and add this meal to the master list
                 mealName = mealNameTextField.text
                 
-                //TODO: Replace with Core Data save
-    //            appDelegate.mealArray.append(meal)
                 saveMeal()
                 self.navigationController?.popViewControllerAnimated(true)
             }
@@ -66,12 +64,9 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
     func saveMeal() {
         let managedContext = appDelegate.managedObjectContext!
         
-        //2
         let mealEntity = NSEntityDescription.entityForName("Meal", inManagedObjectContext: managedContext)
-        
         let managedMeal = NSManagedObject(entity: mealEntity!, insertIntoManagedObjectContext:managedContext)
         
-        //3
         managedMeal.setValue(mealName, forKey: "name")
 
         let ingredientEntity = NSEntityDescription.entityForName("Ingredient", inManagedObjectContext: managedContext)
@@ -81,15 +76,11 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
             managedIngredient.setValue(ingredient, forKey: "name")
             ingredients.addObject(managedIngredient)
         }
-        managedMeal.setValue(ingredients, forKey: "containedIngredients")
+        managedMeal.setValue(ingredients, forKey: "ingredients")
         
-        //4
-        var error: NSError?
-        if !managedContext.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
-        }  
-        //5
-        appDelegate.mealArray.append(managedMeal)
+        appDelegate.saveContext()
+
+        appDelegate.retreiveMealArray()
     }
     
     func ingredientNameEdited(ingredientName: String, indexPath: NSIndexPath) {
