@@ -6,25 +6,15 @@
 //
 //
 
-import UIKit
 import CoreData
 
-class Menu: NSObject {
+class Menu: NSManagedObject {
    
-    var name : String = ""
-    var mealArray : [AnyObject] = []
+    @NSManaged var name : String
+    @NSManaged var meals : NSSet
     var numberOfMeals: Int {
         get {
-            return mealArray.count
+            return meals.count
         }
-    }
-    
-    init(managedObject: NSManagedObject) {
-        name = managedObject.valueForKey("name") as String
-        //TODO: set date
-        //   lastModifiedDate = managedObject.valueForKey("lastModifiedDate") as NSDate
-        
-        mealArray = managedObject.mutableSetValueForKey("containedMeals").allObjects as NSArray
-        
     }
 }

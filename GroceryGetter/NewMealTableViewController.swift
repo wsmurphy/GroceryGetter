@@ -18,19 +18,13 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.mealNameTextField.becomeFirstResponder()
-        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func cancelTapped(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
+    
     @IBAction func saveTapped(sender: AnyObject) {
         //TODO: Resign first responder on any cell that may be currently editing, so that we'll save the item before exiting
         
@@ -61,8 +55,6 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
                 //Finish updates and add this meal to the master list
                 mealName = mealNameTextField.text
                 
-                //TODO: Replace with Core Data save
-    //            appDelegate.mealArray.append(meal)
                 saveMeal()
                 self.navigationController?.popViewControllerAnimated(true)
             }
@@ -72,12 +64,9 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
     func saveMeal() {
         let managedContext = appDelegate.managedObjectContext!
         
-        //2
         let mealEntity = NSEntityDescription.entityForName("Meal", inManagedObjectContext: managedContext)
-        
         let managedMeal = NSManagedObject(entity: mealEntity!, insertIntoManagedObjectContext:managedContext)
         
-        //3
         managedMeal.setValue(mealName, forKey: "name")
 
         let ingredientEntity = NSEntityDescription.entityForName("Ingredient", inManagedObjectContext: managedContext)
@@ -87,15 +76,11 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
             managedIngredient.setValue(ingredient, forKey: "name")
             ingredients.addObject(managedIngredient)
         }
-        managedMeal.setValue(ingredients, forKey: "containedIngredients")
+        managedMeal.setValue(ingredients, forKey: "ingredients")
         
-        //4
-        var error: NSError?
-        if !managedContext.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
-        }  
-        //5
-        appDelegate.mealArray.append(managedMeal)
+        appDelegate.saveContext()
+
+        appDelegate.retreiveMealArray()
     }
     
     func ingredientNameEdited(ingredientName: String, indexPath: NSIndexPath) {
@@ -109,7 +94,6 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
 
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         if(ingredientArray.count == 0) {
             return 1
@@ -153,15 +137,4 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
