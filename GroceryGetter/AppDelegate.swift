@@ -49,10 +49,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("GroceryGetter.sqlite")
         var error: NSError? = nil
         var failureReason = "There was an error creating or loading the application's saved data."
-        if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
+        do {
+            try coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+        } catch var error1 as NSError {
+            error = error1
             coordinator = nil
             // Report any error we got.
-            let dict = NSMutableDictionary()
+            var dict = [NSObject : AnyObject]()
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
             dict[NSUnderlyingErrorKey] = error
@@ -61,6 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog("Unresolved error \(error), \(error!.userInfo)")
             abort()
+        } catch {
+            fatalError()
         }
         
         return coordinator
@@ -72,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if coordinator == nil {
             return nil
         }
-        var managedObjectContext = NSManagedObjectContext()
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
         }()
@@ -82,11 +87,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func saveContext () {
         if let moc = self.managedObjectContext {
             var error: NSError? = nil
-            if moc.hasChanges && !moc.save(&error) {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                NSLog("Unresolved error \(error), \(error!.userInfo)")
-                abort()
+            if moc.hasChanges {
+                do {
+                    try moc.save()
+                } catch let error1 as NSError {
+                    error = error1
+                    // Replace this implementation with code to handle the error appropriately.
+                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    NSLog("Unresolved error \(error), \(error!.userInfo)")
+                    abort()
+                }
             }
         }
     }
@@ -94,30 +104,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK - Core data fetches
     func retreiveMealArray() {
         let fetchRequest = NSFetchRequest(entityName:"Meal")
-        
-        if let results = self.managedObjectContext!.executeFetchRequest(fetchRequest,
-            error: nil) as [Meal]? {
-            mealArray = results
+        do {
+            mealArray = try self.managedObjectContext!.executeFetchRequest(fetchRequest) as! [Meal]
+        } catch _ {
+            print("Error executing mealArray fetch")
         }
     }
     
     func retreiveMenuArray() {
         let fetchRequest = NSFetchRequest(entityName:"Menu")
         
-        if let results = self.managedObjectContext!.executeFetchRequest(fetchRequest,
-            error: nil) as [Menu]? {
-            menuArray = results
+        do {
+            menuArray = try self.managedObjectContext!.executeFetchRequest(fetchRequest) as! [Menu]
+        } catch _ {
+            print("Error executing menuArray fetch")
         }
     }
     
     func retreiveList() {
         let fetchRequest = NSFetchRequest(entityName:"List")
         
-        if let results = self.managedObjectContext!.executeFetchRequest(fetchRequest,
-            error: nil) as [List]? {
-            if(!results.isEmpty) {
-                list = results
-            }
+        do {
+            list = try self.managedObjectContext!.executeFetchRequest(fetchRequest) as! [List]
+        } catch _ {
+            print("Error executing list fetch")
         }
     }
 }

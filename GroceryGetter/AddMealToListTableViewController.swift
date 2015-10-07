@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class AddMealToListTableViewController: UITableViewController {
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
     var mealsToAddArray = [Int]()
     
@@ -27,7 +27,7 @@ class AddMealToListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("AddMealCell", forIndexPath: indexPath) as UITableViewCell
         // Configure the cell...
-        var meal = appDelegate.mealArray[indexPath.row]
+        let meal = appDelegate.mealArray[indexPath.row]
         cell.textLabel!.text = meal.name
         
         return cell
@@ -49,9 +49,9 @@ class AddMealToListTableViewController: UITableViewController {
         let managedContext = appDelegate.managedObjectContext!
         
         if(!appDelegate.list.isEmpty) {
-            var managedList = appDelegate.list[0]
-            let mealEntity = NSEntityDescription.entityForName("Meal", inManagedObjectContext: managedContext)
-            var meals = NSMutableSet(capacity: mealsToAddArray.count)
+            let managedList = appDelegate.list[0]
+            _ = NSEntityDescription.entityForName("Meal", inManagedObjectContext: managedContext)
+            let meals = NSMutableSet(capacity: mealsToAddArray.count)
             for mealIndex in mealsToAddArray {
                 let managedMeal = appDelegate.mealArray[mealIndex]
                 meals.addObject(managedMeal)
@@ -59,20 +59,21 @@ class AddMealToListTableViewController: UITableViewController {
             meals.addObjectsFromArray(managedList.meals.allObjects)
             managedList.setValue(meals, forKey: "meals")
             
-            var error: NSError?
-            if !managedContext.save(&error) {
-                println("Could not save \(error), \(error?.userInfo)")
+            do {
+                try managedContext.save()
+            } catch _ {
+                print("Could not save context")
             }
             
             appDelegate.retreiveList()
         } else {
             //Create New List
-            println("New List")
+            print("New List")
             let listEntity = NSEntityDescription.entityForName("List", inManagedObjectContext: managedContext)
             let managedList = NSManagedObject(entity: listEntity!, insertIntoManagedObjectContext:managedContext)
             
-            let mealEntity = NSEntityDescription.entityForName("Meal", inManagedObjectContext: managedContext)
-            var meals = NSMutableSet(capacity: mealsToAddArray.count)
+            _ = NSEntityDescription.entityForName("Meal", inManagedObjectContext: managedContext)
+            let meals = NSMutableSet(capacity: mealsToAddArray.count)
             for mealIndex in mealsToAddArray {
                 let managedMeal = appDelegate.mealArray[mealIndex]
                 meals.addObject(managedMeal)

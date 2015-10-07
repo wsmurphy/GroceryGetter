@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class NewListTableViewController: UITableViewController {
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var rowArray = [Ingredient]()
     
     override func viewWillAppear(animated: Bool) {
@@ -31,10 +31,10 @@ class NewListTableViewController: UITableViewController {
         
         if(appDelegate.list.count > 0) {
             for(var i = 0; i < appDelegate.list[0].meals.count; i++) {
-                var meal = appDelegate.list[0].meals.allObjects[i] as Meal
+                let meal = appDelegate.list[0].meals.allObjects[i] as! Meal
                 count = count + meal.numberOfIngredients
                 for ingredient in meal.ingredients {
-                    rowArray.append(ingredient as Ingredient)
+                    rowArray.append(ingredient as! Ingredient)
                 }
             }
         }
@@ -46,7 +46,7 @@ class NewListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("ListItemCell", forIndexPath: indexPath) as UITableViewCell
         
         // Configure the cell...
-        var ingredient = rowArray[indexPath.row]
+        let ingredient = rowArray[indexPath.row]
         cell.textLabel?.text = ingredient.name
         cell.detailTextLabel?.text = ingredient.inMeal.name
         

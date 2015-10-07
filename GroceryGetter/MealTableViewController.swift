@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class MealTableViewController: UITableViewController {
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
     override func viewWillAppear(animated: Bool) {
         self.tableView.reloadData()
@@ -27,7 +27,7 @@ class MealTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("MealCell", forIndexPath: indexPath) as UITableViewCell
 
         // Configure the cell...
-        var meal = appDelegate.mealArray[indexPath.row]
+        let meal = appDelegate.mealArray[indexPath.row]
         cell.textLabel?.text = meal.name
         if(meal.numberOfIngredients == 1) {
             cell.detailTextLabel?.text = "\(meal.numberOfIngredients) item"
@@ -39,7 +39,7 @@ class MealTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MealDetailTableViewController") as MealDetailTableViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MealDetailTableViewController") as! MealDetailTableViewController
         vc.meal = appDelegate.mealArray[indexPath.row] as Meal
         self.showViewController(vc, sender: self)
     }
@@ -60,7 +60,7 @@ class MealTableViewController: UITableViewController {
 
             //TODO: Fixme
             // Delete the row from the data source
-            var meal = appDelegate.mealArray[indexPath.row]
+            let meal = appDelegate.mealArray[indexPath.row]
             managedContext.deleteObject(meal)
 
             appDelegate.saveContext()

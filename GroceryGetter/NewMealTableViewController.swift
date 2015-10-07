@@ -13,7 +13,7 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
     @IBOutlet weak var mealNameTextField: UITextField!
     var mealName = ""
     var ingredientArray : [String] = []
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +30,8 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
         
         
         //Validate that we have minimum data to create a new meal
-        if(mealNameTextField.text.isEmpty == true) {
-            var alert = UIAlertController(title: "Error", message: "Meal Name must be set", preferredStyle: UIAlertControllerStyle.Alert)
+        if(mealNameTextField.text!.isEmpty == true) {
+            let alert = UIAlertController(title: "Error", message: "Meal Name must be set", preferredStyle: UIAlertControllerStyle.Alert)
             let cancelAction = UIAlertAction(title: "OK", style: .Cancel){ (action) in
                 //Highlight meal name text field with red border
                 self.mealNameTextField.layer.borderColor = UIColor.redColor().CGColor
@@ -46,14 +46,14 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
         //   self.mealNameTextField.layer.borderColor = UIColor.clearColor().CGColor
 
             if (ingredientArray.count == 0) {
-                var alert = UIAlertController(title: "Error", message: "Must have at least one ingredient", preferredStyle: UIAlertControllerStyle.Alert)
+                let alert = UIAlertController(title: "Error", message: "Must have at least one ingredient", preferredStyle: UIAlertControllerStyle.Alert)
                 let cancelAction = UIAlertAction(title: "OK", style: .Cancel){ (action) in
                 }
                 alert.addAction(cancelAction)
                 self.presentViewController(alert, animated: true, completion: nil)
             } else {
                 //Finish updates and add this meal to the master list
-                mealName = mealNameTextField.text
+                mealName = mealNameTextField.text!
                 
                 saveMeal()
                 self.navigationController?.popViewControllerAnimated(true)
@@ -70,7 +70,7 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
         managedMeal.setValue(mealName, forKey: "name")
 
         let ingredientEntity = NSEntityDescription.entityForName("Ingredient", inManagedObjectContext: managedContext)
-        var ingredients = NSMutableSet(capacity: ingredientArray.count)
+        let ingredients = NSMutableSet(capacity: ingredientArray.count)
         for ingredient in ingredientArray {
             let managedIngredient = NSManagedObject(entity: ingredientEntity!, insertIntoManagedObjectContext:managedContext)
             managedIngredient.setValue(ingredient, forKey: "name")
@@ -103,7 +103,7 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("IngredientCell", forIndexPath: indexPath) as AddIngredientTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("IngredientCell", forIndexPath: indexPath) as! AddIngredientTableViewCell
 
         // Configure the cell...
         if(indexPath.row >= ingredientArray.count) {

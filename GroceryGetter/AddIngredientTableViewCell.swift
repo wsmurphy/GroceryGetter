@@ -31,8 +31,8 @@ class AddIngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        println("Did end editing")
-        delegate?.ingredientNameEdited(textField.text, indexPath:cellIndexPath!)
+        print("Did end editing")
+        delegate?.ingredientNameEdited(textField.text!, indexPath:cellIndexPath!)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

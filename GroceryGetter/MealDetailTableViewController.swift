@@ -9,7 +9,7 @@
 import UIKit
 
 class MealDetailTableViewController: UITableViewController {
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var meal : Meal?
     
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ class MealDetailTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("IngredientTableCell", forIndexPath: indexPath) as IngredientTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("IngredientTableCell", forIndexPath: indexPath) as! IngredientTableViewCell
 
         // Configure the cell...
         cell.textLabel?.text = meal?.ingredients.allObjects[indexPath.row].name
@@ -46,8 +46,8 @@ class MealDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            var item = meal!.ingredients.allObjects[indexPath.row] as Ingredient
-            var mutableIngredients = meal!.mutableSetValueForKey("ingredients")
+            let item = meal!.ingredients.allObjects[indexPath.row] as! Ingredient
+            let mutableIngredients = meal!.mutableSetValueForKey("ingredients")
             mutableIngredients.removeObject(item)
                 
             appDelegate.saveContext()

@@ -14,7 +14,7 @@ class NewMenuTableViewController: UITableViewController {
     @IBOutlet weak var menuNameTextField: UITextField!
     var menuName = ""
     var mealArray : [Int] = []
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -27,7 +27,7 @@ class NewMenuTableViewController: UITableViewController {
         let cell = UITableViewCell()
 
         // Configure the cell...
-        var meal = appDelegate.mealArray[indexPath.row]
+        let meal = appDelegate.mealArray[indexPath.row]
         cell.textLabel?.text = meal.name
         cell.accessoryType = UITableViewCellAccessoryType.None;
         
@@ -52,8 +52,8 @@ class NewMenuTableViewController: UITableViewController {
 
     @IBAction func saveTapped(sender: AnyObject) {
         //Validate that we have minimum data to create a new menu
-        if(menuNameTextField.text.isEmpty == true) {
-            var alert = UIAlertController(title: "Error", message: "Menu Name must be set", preferredStyle: UIAlertControllerStyle.Alert)
+        if(menuNameTextField.text!.isEmpty == true) {
+            let alert = UIAlertController(title: "Error", message: "Menu Name must be set", preferredStyle: UIAlertControllerStyle.Alert)
             let cancelAction = UIAlertAction(title: "OK", style: .Cancel){ (action) in
                 //Highlight meal name text field with red border
                 self.menuNameTextField.layer.borderColor = UIColor.redColor().CGColor
@@ -64,7 +64,7 @@ class NewMenuTableViewController: UITableViewController {
             alert.addAction(cancelAction)
             self.presentViewController(alert, animated: true, completion: nil)
         } else {
-            menuName = self.menuNameTextField.text
+            menuName = self.menuNameTextField.text!
             saveMenu()
             self.navigationController?.popViewControllerAnimated(true)
         }
@@ -79,8 +79,8 @@ class NewMenuTableViewController: UITableViewController {
         managedMenu.setValue(menuName, forKey: "name")
         
         //TODO: Put in MealArray from saved indexes
-        let mealEntity = NSEntityDescription.entityForName("Meal", inManagedObjectContext: managedContext)
-        var meals = NSMutableSet(capacity: mealArray.count)
+        _ = NSEntityDescription.entityForName("Meal", inManagedObjectContext: managedContext)
+        let meals = NSMutableSet(capacity: mealArray.count)
         for arrayIndex in mealArray {
             meals.addObject(appDelegate.mealArray[arrayIndex])
         }

@@ -9,7 +9,7 @@
 import UIKit
 
 class MenuTableViewController: UITableViewController {
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -21,7 +21,7 @@ class MenuTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath) as UITableViewCell
 
         // Configure the cell...
-        var menu = appDelegate.menuArray[indexPath.row]
+        let menu = appDelegate.menuArray[indexPath.row]
         cell.textLabel?.text = menu.name
         if(menu.numberOfMeals == 1) {
             cell.detailTextLabel?.text = "\(menu.numberOfMeals) meal"
@@ -33,7 +33,7 @@ class MenuTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MenuDetailTableViewController") as MenuDetailTableViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MenuDetailTableViewController") as! MenuDetailTableViewController
         vc.menu = appDelegate.menuArray[indexPath.row]
         self.showViewController(vc, sender: self)
     }
@@ -51,7 +51,11 @@ class MenuTableViewController: UITableViewController {
             
             let managedContext = appDelegate.managedObjectContext!
             managedContext.deleteObject(appDelegate.menuArray[indexPath.row])
-            managedContext.save(nil)
+            do {
+                try managedContext.save()
+            } catch _ {
+                print("Error saving context")
+            }
             
             appDelegate.menuArray.removeAtIndex(indexPath.row)
 
