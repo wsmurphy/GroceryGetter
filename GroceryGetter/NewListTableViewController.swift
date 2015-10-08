@@ -13,103 +13,105 @@ class NewListTableViewController: UITableViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var rowArray = [Ingredient]()
     
+    var isAddingIngredient = false
+    
     override func viewWillAppear(animated: Bool) {
+        setRowArray()
+        
         self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // Return the number of sections.
-        return 1
-    }
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
-        //Clear rowArray
-        rowArray.removeAll(keepCapacity: true)
         
-        if(appDelegate.list.count > 0) {
-            for(var i = 0; i < appDelegate.list[0].meals.count; i++) {
-                let meal = appDelegate.list[0].meals.allObjects[i] as! Meal
-                count = count + meal.numberOfIngredients
-                for ingredient in meal.ingredients {
-                    rowArray.append(ingredient as! Ingredient)
-                }
-            }
+        if appDelegate.list.count > 0 {
+            count = appDelegate.list[0].ingredients.count
+        } else {
+            count = 0
         }
+        
+        if self.isAddingIngredient {
+            count++
+        }
+        
         
         return count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ListItemCell", forIndexPath: indexPath) as UITableViewCell
-        
-        // Configure the cell...
-        let ingredient = rowArray[indexPath.row]
-        cell.textLabel?.text = ingredient.name
-        cell.detailTextLabel?.text = ingredient.inMeal.name
-        
-        return cell
+        if self.isAddingIngredient && indexPath.row == self.tableView.numberOfRowsInSection(indexPath.section) - 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("IngredientCell", forIndexPath: indexPath) as! AddIngredientTableViewCell
+            cell.delegate = self
+            cell.cellIndexPath = indexPath
+            cell.ingredientNameTextField.becomeFirstResponder()
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("ListItemCell", forIndexPath: indexPath) as UITableViewCell
+            
+            // Configure the cell...
+            let ingredient = rowArray[indexPath.row]
+            cell.textLabel?.text = ingredient.name
+            cell.detailTextLabel?.text = ingredient.inMeal.name
+            
+            return cell
+        }
     }
 
     @IBAction func addFromMenuButtonTapped(sender: AnyObject) {
+        //Unimplemented for now (button hidden on storyboard)
     }
+    
     @IBAction func addIngredientButtonTapped(sender: AnyObject) {
+        self.isAddingIngredient = true
+        
+        self.tableView.reloadData()
     }
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
+            let item = appDelegate.list[0].ingredients.allObjects[indexPath.row] as! Ingredient
+            let mutableIngredients = appDelegate.list[0].mutableSetValueForKey("ingredients")
+            mutableIngredients.removeObject(item)
+            
+            appDelegate.saveContext()
+            
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    
+    func setRowArray() {
+        if appDelegate.list.count > 0 {
+            rowArray = appDelegate.list[0].ingredients.allObjects as! [Ingredient]
+            //TODO: Sort
+            //Removing sort for now, as it messes with add\delete order
+//            rowArray.sortInPlace { x, y in
+//                return x.inMeal.name < y.inMeal.name
+//            }
+        }
     }
-    */
+}
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
+extension NewListTableViewController : AddIngredientCellDelegate {
+    func ingredientNameEdited(ingredientName: String, indexPath: NSIndexPath) {
+        self.isAddingIngredient = false
+        
+        //TODO: Add ingredient to list
+        let managedContext = appDelegate.managedObjectContext!
+        let ingredientEntity = NSEntityDescription.entityForName("Ingredient", inManagedObjectContext: managedContext)
+
+        let managedIngredient = NSManagedObject(entity: ingredientEntity!, insertIntoManagedObjectContext:managedContext)
+        managedIngredient.setValue(ingredientName, forKey: "name")
+        
+        let mutableIngredients = appDelegate.list[0].mutableSetValueForKey("ingredients")
+        mutableIngredients.addObject(managedIngredient)
+        
+        setRowArray()
+        
+        self.tableView.reloadData()
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -50,20 +50,19 @@ class AddMealToListTableViewController: UITableViewController {
         
         if(!appDelegate.list.isEmpty) {
             let managedList = appDelegate.list[0]
+            
             _ = NSEntityDescription.entityForName("Meal", inManagedObjectContext: managedContext)
-            let meals = NSMutableSet(capacity: mealsToAddArray.count)
+            let ingredients = NSMutableSet(capacity: mealsToAddArray.count)
+            ingredients.addObjectsFromArray(appDelegate.list[0].ingredients.allObjects)
             for mealIndex in mealsToAddArray {
                 let managedMeal = appDelegate.mealArray[mealIndex]
-                meals.addObject(managedMeal)
+                ingredients.addObjectsFromArray(managedMeal.ingredients.allObjects)
             }
-            meals.addObjectsFromArray(managedList.meals.allObjects)
-            managedList.setValue(meals, forKey: "meals")
+        
+            managedList.setValue(ingredients, forKey: "ingredients")
             
-            do {
-                try managedContext.save()
-            } catch _ {
-                print("Could not save context")
-            }
+            
+            appDelegate.saveContext()
             
             appDelegate.retreiveList()
         } else {
@@ -73,12 +72,13 @@ class AddMealToListTableViewController: UITableViewController {
             let managedList = NSManagedObject(entity: listEntity!, insertIntoManagedObjectContext:managedContext)
             
             _ = NSEntityDescription.entityForName("Meal", inManagedObjectContext: managedContext)
-            let meals = NSMutableSet(capacity: mealsToAddArray.count)
+            let ingredients = NSMutableSet(capacity: mealsToAddArray.count)
             for mealIndex in mealsToAddArray {
                 let managedMeal = appDelegate.mealArray[mealIndex]
-                meals.addObject(managedMeal)
+                ingredients.addObjectsFromArray(managedMeal.ingredients.allObjects)
             }
-            managedList.setValue(meals, forKey: "meals")
+            
+            managedList.setValue(ingredients, forKey: "ingredients")
             
             appDelegate.saveContext()
             
@@ -86,50 +86,4 @@ class AddMealToListTableViewController: UITableViewController {
         }
         self.navigationController?.popViewControllerAnimated(true)
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

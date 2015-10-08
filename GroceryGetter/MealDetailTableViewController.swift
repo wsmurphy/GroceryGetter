@@ -31,8 +31,8 @@ class MealDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("IngredientTableCell", forIndexPath: indexPath) as! IngredientTableViewCell
 
-        // Configure the cell...
         cell.textLabel?.text = meal?.ingredients.allObjects[indexPath.row].name
+        
         return cell
     }
 
@@ -40,6 +40,10 @@ class MealDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the specified item to be editable.
         return true
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
     // Override to support editing the table view.

@@ -34,20 +34,22 @@ class HomeTableViewController: UITableViewController {
                 }
                 cell.hidden = false
             }
-        } else if (indexPath.section == 1 && indexPath.row > 0) {
-            if(indexPath.row > appDelegate.menuArray.count) {
-                cell.hidden = true
-            } else {
-                 let menu = appDelegate.menuArray[indexPath.row - 1]
-                cell.textLabel?.text = menu.name
-                if(menu.numberOfMeals == 1) {
-                    cell.detailTextLabel?.text = "\(menu.numberOfMeals) meal"
-                } else {
-                    cell.detailTextLabel?.text = "\(menu.numberOfMeals) meals"
-                }
-                cell.hidden = false
-            }
         }
+        
+//        } else if (indexPath.section == 1 && indexPath.row > 0) {
+//            if(indexPath.row > appDelegate.menuArray.count) {
+//                cell.hidden = true
+//            } else {
+//                 let menu = appDelegate.menuArray[indexPath.row - 1]
+//                cell.textLabel?.text = menu.name
+//                if(menu.numberOfMeals == 1) {
+//                    cell.detailTextLabel?.text = "\(menu.numberOfMeals) meal"
+//                } else {
+//                    cell.detailTextLabel?.text = "\(menu.numberOfMeals) meals"
+//                }
+//                cell.hidden = false
+//            }
+//        }
         return cell
     }
     
@@ -65,7 +67,7 @@ class HomeTableViewController: UITableViewController {
     
     @IBAction func listButtonTapped(sender: AnyObject) {
         if(appDelegate.mealArray.isEmpty) {
-            let alertController = UIAlertController(title: "Tip", message: "Add ingredients to a meal to make building a list quick and easy!", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertController = UIAlertController(title: "Tip", message: "Add ingredients to a meal to make building a list quick and easy!\nTap all meals to get started building a meal.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             self.presentViewController(alertController, animated: true, completion:nil)
         } else {

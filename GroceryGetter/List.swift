@@ -11,6 +11,4 @@ import CoreData
 class List: NSManagedObject {
    
     @NSManaged var ingredients : NSSet
-    @NSManaged var meals : NSSet
-    @NSManaged var menus : NSSet
 }

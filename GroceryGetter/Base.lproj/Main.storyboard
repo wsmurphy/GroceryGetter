@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Grocery Getter-->
+        <!--Home Table View Controller-->
         <scene sceneID="sf9-vR-yMb">
             <objects>
                 <tableViewController id="lhY-xC-lxO" customClass="HomeTableViewController" customModule="GroceryGetter" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,6 +41,7 @@
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="centerY" secondItem="LMV-3b-rnf" secondAttribute="centerY" id="Gj7-Ge-CgR"/>
                                 <constraint firstAttribute="centerX" secondItem="LMV-3b-rnf" secondAttribute="centerX" constant="-0.5" id="UBh-TY-MnB"/>
@@ -49,7 +50,7 @@
                         <sections>
                             <tableViewSection headerTitle="Recent Meals" id="uG7-OS-Yee">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="H6Y-85-YO4">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="mealHeader" id="H6Y-85-YO4">
                                         <rect key="frame" x="0.0" y="202" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H6Y-85-YO4" id="tf2-xU-wyY">
@@ -221,7 +222,7 @@
                             <outlet property="delegate" destination="lhY-xC-lxO" id="usL-Vt-okX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Grocery Getter" id="ID1-Ut-wuw"/>
+                    <navigationItem key="navigationItem" id="ID1-Ut-wuw"/>
                     <connections>
                         <outlet property="listButton" destination="LMV-3b-rnf" id="7lx-Zx-cIO"/>
                         <segue destination="1pG-9B-Ztz" kind="show" identifier="NewListSegue" id="Idp-WY-k82"/>
@@ -243,8 +244,8 @@
                             <rect key="frame" x="0.0" y="64" width="600" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRp-SJ-i2g">
-                                    <rect key="frame" x="8" y="17" width="66" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRp-SJ-i2g">
+                                    <rect key="frame" x="8" y="17" width="65" height="30"/>
                                     <state key="normal" title="Add Meal">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -252,8 +253,8 @@
                                         <segue destination="Irc-dz-J7P" kind="show" identifier="AddMealSegue" id="2Da-kW-nsj"/>
                                     </connections>
                                 </button>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egg-kZ-4xG">
-                                    <rect key="frame" x="247" y="17" width="107" height="30"/>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egg-kZ-4xG">
+                                    <rect key="frame" x="247" y="17" width="106" height="30"/>
                                     <state key="normal" title="Add from Menu">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -261,7 +262,7 @@
                                         <action selector="addFromMenuButtonTapped:" destination="1pG-9B-Ztz" eventType="touchUpInside" id="dcs-pZ-S37"/>
                                     </connections>
                                 </button>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nX-M0-Yv9">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nX-M0-Yv9">
                                     <rect key="frame" x="491" y="17" width="101" height="30"/>
                                     <state key="normal" title="Add Ingredient">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -270,14 +271,14 @@
                                         <action selector="addIngredientButtonTapped:" destination="1pG-9B-Ztz" eventType="touchUpInside" id="O7H-z6-rq2"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="For Meal:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XfA-gB-Ayi">
-                                    <rect key="frame" x="519" y="74" width="73" height="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For Meal:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XfA-gB-Ayi">
+                                    <rect key="frame" x="521" y="74" width="71" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Item Needed:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfc-Eu-5pM">
-                                    <rect key="frame" x="8" y="74" width="104" height="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Needed:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfc-Eu-5pM">
+                                    <rect key="frame" x="8" y="74" width="103" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -321,6 +322,24 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" id="0RA-PX-Z3U" customClass="AddIngredientTableViewCell" customModule="GroceryGetter" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="234" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0RA-PX-Z3U" id="tFo-lP-Ml2">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gep-qB-sIA">
+                                            <rect key="frame" x="8" y="6" width="584" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="ingredientNameTextField" destination="Gep-qB-sIA" id="mQA-Re-wje"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
