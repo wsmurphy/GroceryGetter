@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class NewMealTableViewController: UITableViewController, AddIngredientCellDelegate  {
+class NewMealTableViewController: UITableViewController  {
     @IBOutlet weak var mealNameTextField: UITextField!
     var mealName = ""
     var ingredientArray : [String] = []
@@ -82,15 +82,6 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
 
         appDelegate.retreiveMealArray()
     }
-    
-    func ingredientNameEdited(ingredientName: String, indexPath: NSIndexPath) {
-        if(!ingredientName.isEmpty) {
-            //TODO: Allow editing previously added items, and handle updating in the array, instead of append every time
-            ingredientArray.append(ingredientName)
-        }
-        
-        self.tableView.reloadData()
-    }
 
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -135,6 +126,32 @@ class NewMealTableViewController: UITableViewController, AddIngredientCellDelega
             ingredientArray.removeAtIndex(indexPath.row)
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+    }
+}
+
+extension NewMealTableViewController : AddIngredientCellDelegate {
+    func ingredientNameEdited(ingredientName: String, indexPath: NSIndexPath) {
+        if(!ingredientName.isEmpty) {
+            //TODO: Allow editing previously added items, and handle updating in the array, instead of append every time
+            ingredientArray.append(ingredientName)
+        }
+        
+        self.tableView.reloadData()
+    }
+}
+
+extension NewMealTableViewController : UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true;
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        //Shift the table view up to make sure the cell that is editing shows above the keyboard
+        if let cell = textField.superview?.superview as? UITableViewCell, indexPath = self.tableView.indexPathForCell(cell) {
+            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
         }
     }
 }

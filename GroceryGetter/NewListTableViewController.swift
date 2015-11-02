@@ -16,6 +16,10 @@ class NewListTableViewController: UITableViewController {
     var isAddingIngredient = false
     
     override func viewWillAppear(animated: Bool) {
+        //Register for keyboard notifications
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidHide:", name: UIKeyboardDidHideNotification, object: nil)
+        
         setRowArray()
         
         self.tableView.reloadData()
@@ -64,7 +68,10 @@ class NewListTableViewController: UITableViewController {
     }
     
     @IBAction func addIngredientButtonTapped(sender: AnyObject) {
+        //Set the isAdding flag, then scroll the view to set the add cell visible
         self.isAddingIngredient = true
+//
+//        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: appDelegate.list[0].ingredients.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
         
         self.tableView.reloadData()
     }
@@ -82,6 +89,22 @@ class NewListTableViewController: UITableViewController {
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
+        
+//        self.tableView.reloadData()
+    }
+    
+    func keyboardWasShown(notification: NSNotification) {
+        if let info = notification.userInfo {
+            let size = info[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
+            self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, size.height, 0.0)
+            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0.0, 0.0, size.height, 0.0)
+        }
+    }
+    
+    //FIXME: When resetting the insets, the "Add Item" row gets hidden by the scroll
+    func keyboardDidHide(notification: NSNotification) {
+        self.tableView.contentInset = UIEdgeInsetsZero
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsZero
     }
     
     func setRowArray() {
@@ -99,6 +122,11 @@ class NewListTableViewController: UITableViewController {
 extension NewListTableViewController : AddIngredientCellDelegate {
     func ingredientNameEdited(ingredientName: String, indexPath: NSIndexPath) {
         self.isAddingIngredient = false
+        
+        //If no ingredient name was entered, just return
+        if ingredientName.characters.count == 0 {
+            return
+        }
         
         //TODO: Add ingredient to list
         let managedContext = appDelegate.managedObjectContext!
