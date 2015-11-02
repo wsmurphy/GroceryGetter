@@ -70,8 +70,6 @@ class NewListTableViewController: UITableViewController {
     @IBAction func addIngredientButtonTapped(sender: AnyObject) {
         //Set the isAdding flag, then scroll the view to set the add cell visible
         self.isAddingIngredient = true
-//
-//        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: appDelegate.list[0].ingredients.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
         
         self.tableView.reloadData()
     }
@@ -79,18 +77,17 @@ class NewListTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
+            // Delete the row from core data, the row array, and the tableView
             let item = appDelegate.list[0].ingredients.allObjects[indexPath.row] as! Ingredient
             let mutableIngredients = appDelegate.list[0].mutableSetValueForKey("ingredients")
             mutableIngredients.removeObject(item)
             
             appDelegate.saveContext()
             
-            
+            //Sync local array with Core Data
+            setRowArray()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
-        
-//        self.tableView.reloadData()
     }
     
     func keyboardWasShown(notification: NSNotification) {
@@ -101,10 +98,9 @@ class NewListTableViewController: UITableViewController {
         }
     }
     
-    //FIXME: When resetting the insets, the "Add Item" row gets hidden by the scroll
     func keyboardDidHide(notification: NSNotification) {
-        self.tableView.contentInset = UIEdgeInsetsZero
-        self.tableView.scrollIndicatorInsets = UIEdgeInsetsZero
+        self.tableView.contentInset = UIEdgeInsetsMake(64.0, 0.0, 0.0, 0.0)
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(64.0, 0.0, 0.0, 0.0)
     }
     
     func setRowArray() {
@@ -128,7 +124,7 @@ extension NewListTableViewController : AddIngredientCellDelegate {
             return
         }
         
-        //TODO: Add ingredient to list
+        //Add ingredient to list
         let managedContext = appDelegate.managedObjectContext!
         let ingredientEntity = NSEntityDescription.entityForName("Ingredient", inManagedObjectContext: managedContext)
 
@@ -138,6 +134,7 @@ extension NewListTableViewController : AddIngredientCellDelegate {
         let mutableIngredients = appDelegate.list[0].mutableSetValueForKey("ingredients")
         mutableIngredients.addObject(managedIngredient)
         
+        //Sync local array with Core Data
         setRowArray()
         
         self.tableView.reloadData()

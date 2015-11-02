@@ -127,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func retreiveList() {
         let fetchRequest = NSFetchRequest(entityName:"List")
-        
+
         do {
             list = try self.managedObjectContext!.executeFetchRequest(fetchRequest) as! [List]
         } catch _ {

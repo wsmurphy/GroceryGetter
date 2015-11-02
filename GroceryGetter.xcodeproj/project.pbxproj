@@ -28,8 +28,8 @@
 		60A0E1EB1A6610B8001F029D /* NewListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A0E1EA1A6610B8001F029D /* NewListTableViewController.swift */; };
 		60CBF9841A5A2DC800855AAD /* MealDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CBF9831A5A2DC800855AAD /* MealDetailTableViewController.swift */; };
 		60CBF9861A5A31E400855AAD /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CBF9851A5A31E400855AAD /* IngredientTableViewCell.swift */; };
-		60F56D921BD7A72D00B2C98F /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F56D901BD7A72D00B2C98F /* Fabric.framework */; settings = {ASSET_TAGS = (); }; };
-		60F56D931BD7A72D00B2C98F /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F56D911BD7A72D00B2C98F /* Crashlytics.framework */; settings = {ASSET_TAGS = (); }; };
+		60F56D921BD7A72D00B2C98F /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F56D901BD7A72D00B2C98F /* Fabric.framework */; };
+		60F56D931BD7A72D00B2C98F /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F56D911BD7A72D00B2C98F /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
