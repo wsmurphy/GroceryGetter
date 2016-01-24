@@ -71,7 +71,7 @@ class NewMenuTableViewController: UITableViewController {
     }
     
     func saveMenu() {
-        let managedContext = appDelegate.managedObjectContext!
+        let managedContext = appDelegate.dataManager.managedObjectContext
         
         let menuEntity = NSEntityDescription.entityForName("Menu", inManagedObjectContext: managedContext)
         let managedMenu = NSManagedObject(entity: menuEntity!, insertIntoManagedObjectContext:managedContext)
@@ -87,7 +87,8 @@ class NewMenuTableViewController: UITableViewController {
 
         managedMenu.setValue(meals, forKey: "meals")
 
-        appDelegate.saveContext()
-        appDelegate.retreiveMenuArray()
+        appDelegate.dataManager.saveContext()
+        //TODO: Fix reference to arrays in appDelegate
+        appDelegate.dataManager.retreiveMenuArray()
     }
 }

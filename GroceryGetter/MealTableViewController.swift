@@ -55,7 +55,7 @@ class MealTableViewController: UITableViewController {
         if editingStyle == .Delete {
             // Delete the row from the data source
 
-            let managedContext = appDelegate.managedObjectContext!
+            let managedContext = appDelegate.dataManager.managedObjectContext
             
 
             //TODO: Fixme
@@ -63,8 +63,8 @@ class MealTableViewController: UITableViewController {
             let meal = appDelegate.mealArray[indexPath.row]
             managedContext.deleteObject(meal)
 
-            appDelegate.saveContext()
-            appDelegate.retreiveMealArray()
+            appDelegate.dataManager.saveContext()
+            appDelegate.dataManager.retreiveMealArray()
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }  

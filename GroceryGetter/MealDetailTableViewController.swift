@@ -54,7 +54,7 @@ class MealDetailTableViewController: UITableViewController {
             let mutableIngredients = meal!.mutableSetValueForKey("ingredients")
             mutableIngredients.removeObject(item)
                 
-            appDelegate.saveContext()
+            appDelegate.dataManager.saveContext()
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }

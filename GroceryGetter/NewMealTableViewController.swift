@@ -62,7 +62,7 @@ class NewMealTableViewController: UITableViewController  {
     }
     
     func saveMeal() {
-        let managedContext = appDelegate.managedObjectContext!
+        let managedContext = appDelegate.dataManager.managedObjectContext
         
         let mealEntity = NSEntityDescription.entityForName("Meal", inManagedObjectContext: managedContext)
         let managedMeal = NSManagedObject(entity: mealEntity!, insertIntoManagedObjectContext:managedContext)
@@ -78,9 +78,9 @@ class NewMealTableViewController: UITableViewController  {
         }
         managedMeal.setValue(ingredients, forKey: "ingredients")
         
-        appDelegate.saveContext()
+        appDelegate.dataManager.saveContext()
 
-        appDelegate.retreiveMealArray()
+        appDelegate.dataManager.retreiveMealArray()
     }
 
     // MARK: - Table view data source

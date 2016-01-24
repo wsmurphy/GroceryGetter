@@ -49,7 +49,7 @@ class MenuTableViewController: UITableViewController {
         if editingStyle == .Delete {
             // Delete the row from the data source
             
-            let managedContext = appDelegate.managedObjectContext!
+            let managedContext = appDelegate.dataManager.managedObjectContext
             managedContext.deleteObject(appDelegate.menuArray[indexPath.row])
             do {
                 try managedContext.save()

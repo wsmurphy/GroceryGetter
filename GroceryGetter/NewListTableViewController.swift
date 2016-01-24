@@ -82,7 +82,10 @@ class NewListTableViewController: UITableViewController {
             let mutableIngredients = appDelegate.list[0].mutableSetValueForKey("ingredients")
             mutableIngredients.removeObject(item)
             
-            appDelegate.saveContext()
+            //Will this work??
+            appDelegate.list[0].ingredients = mutableIngredients
+            
+            appDelegate.dataManager.saveContext()
             
             //Sync local array with Core Data
             setRowArray()
@@ -104,6 +107,9 @@ class NewListTableViewController: UITableViewController {
     }
     
     func setRowArray() {
+        //Refresh list from coreData
+        appDelegate.dataManager.retreiveList()
+        
         if appDelegate.list.count > 0 {
             rowArray = appDelegate.list[0].ingredients.allObjects as! [Ingredient]
             //TODO: Sort
@@ -125,7 +131,7 @@ extension NewListTableViewController : AddIngredientCellDelegate {
         }
         
         //Add ingredient to list
-        let managedContext = appDelegate.managedObjectContext!
+        let managedContext = appDelegate.dataManager.managedObjectContext
         let ingredientEntity = NSEntityDescription.entityForName("Ingredient", inManagedObjectContext: managedContext)
 
         let managedIngredient = NSManagedObject(entity: ingredientEntity!, insertIntoManagedObjectContext:managedContext)
@@ -133,6 +139,8 @@ extension NewListTableViewController : AddIngredientCellDelegate {
         
         let mutableIngredients = appDelegate.list[0].mutableSetValueForKey("ingredients")
         mutableIngredients.addObject(managedIngredient)
+        
+        appDelegate.dataManager.saveContext()
         
         //Sync local array with Core Data
         setRowArray()

@@ -14,6 +14,10 @@ class AddMealToListTableViewController: UITableViewController {
 
     var mealsToAddArray = [Int]()
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // Return the number of sections.
@@ -46,7 +50,7 @@ class AddMealToListTableViewController: UITableViewController {
     }
     
     @IBAction func doneButtonTapped(sender: AnyObject) {
-        let managedContext = appDelegate.managedObjectContext!
+        let managedContext = DataManager.sharedInstance().managedObjectContext
         
         if(!appDelegate.list.isEmpty) {
             let managedList = appDelegate.list[0]
@@ -62,9 +66,9 @@ class AddMealToListTableViewController: UITableViewController {
             managedList.setValue(ingredients, forKey: "ingredients")
             
             
-            appDelegate.saveContext()
+            DataManager.sharedInstance().saveContext()
             
-            appDelegate.retreiveList()
+            DataManager.sharedInstance().retreiveList()
         } else {
             //Create New List
             print("New List")
@@ -80,9 +84,9 @@ class AddMealToListTableViewController: UITableViewController {
             
             managedList.setValue(ingredients, forKey: "ingredients")
             
-            appDelegate.saveContext()
+            DataManager.sharedInstance().saveContext()
             
-            appDelegate.retreiveList()
+            DataManager.sharedInstance().retreiveList()
         }
         self.navigationController?.popViewControllerAnimated(true)
     }
